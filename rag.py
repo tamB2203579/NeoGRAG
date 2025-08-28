@@ -5,6 +5,7 @@ from langchain_mistralai import ChatMistralAI
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from llama_index.core import Document
+from NED import applyNED
 from dotenv import load_dotenv
 import os
 import re
@@ -103,7 +104,7 @@ class RAG:
         vector_index = self.vector_store.create_vector_store(documents)
         return vector_index
 
-    def generate_response(self, query):
+    def generate_response(self, query, senNED):
         """
         Generate a response using the RAG system.
         """
@@ -131,6 +132,7 @@ class RAG:
         response = chain.invoke({
             "query": query,
             "vector_context": vector_context,
+            "NED": senNED
         })
         
         return {
@@ -151,6 +153,8 @@ class RAG:
             if query.lower() == "q":
                 break
             
-            result = self.generate_response(query)
+            senNED = applyNED(query)
+            
+            result = self.generate_response(query, senNED)
             print("\nAnswer: ", result["response"])
             print("\nVector context: ", result["vector_context"])
