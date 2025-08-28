@@ -14,8 +14,12 @@ QUESTION:
 Contextual Label:
 {label}
 
+NED sentences:
+{NED}
+
 Your answer must strictly follow the requirements below::
-1. Only use the information provided in the vector store and knowledge graph. Do NOT generate or assume information not included in the given context. 
+1. Only use the information provided in the vector store and knowledge graph. Do NOT generate or assume information not included in the given context.
+2. use these NED sentences to clarify the intent of the user’s query before answering
 2. If there is conflicting information, clearly state the possible explanations
 3. Prioritize information from the knowledge graph over vector store, in a 70/30 weighting.
 4. Write your answer in Vietnamese, using clear, structured, and easy-to-understand manner. 

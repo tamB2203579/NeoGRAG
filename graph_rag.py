@@ -6,6 +6,7 @@ from llama_index.core import Document
 from dotenv import load_dotenv
 from uuid import uuid4
 from glob import glob
+from NED import applyNED
 import pandas as pd
 import os
 
@@ -88,7 +89,7 @@ class GraphRAG:
         else:
             print("Skipping GraphRAG initialization due to missing data")
             
-    def generate_response(self, query, label=None):
+    def generate_response(self, query, senNED, label=None):
         """
         Generate a response using the GraphRAG system.
         """
@@ -123,7 +124,8 @@ class GraphRAG:
             "query": query,
             "vector_context": vector_context,
             "graph_context": graph_context,
-            "label": label
+            "label": label,
+            "NED": senNED,
         })
         
         return {
@@ -152,6 +154,8 @@ class GraphRAG:
                     print(f"Classified as: {label}")
                 except Exception as e:
                     print(f"Classification error: {e}")
+
+            senNED = applyNED(query)
             
-            result = self.generate_response(query, label)
+            result = self.generate_response(query, senNED, label)
             print(result["response"])
