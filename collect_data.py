@@ -19,7 +19,7 @@ from langchain_experimental.text_splitter import SemanticChunker
 from docling.datamodel.pipeline_options import (
     PdfPipelineOptions,
     TableFormerMode,
-    TesseractOcrOptions,
+    EasyOcrOptions,
 )
 from docling.document_converter import DocumentConverter
 from docling.document_converter import PdfFormatOption
@@ -28,7 +28,6 @@ from docling.datamodel.base_models import InputFormat
 from embedding import Embedding
 
 load_dotenv()
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["MISTRAL_API_KEY"] = os.getenv("MISTRAL_API_KEY")
 
@@ -39,7 +38,7 @@ def convert_pdf_to_md():
         if file.endswith(".pdf"):
             input_path = os.path.join("data/raw", file)
             try:
-                ocr_options = TesseractOcrOptions(
+                ocr_options = EasyOcrOptions(
                     lang=["vie"], force_full_page_ocr=False
                 )
                 pipeline_options = PdfPipelineOptions(

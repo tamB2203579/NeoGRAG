@@ -28,8 +28,7 @@ app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
 
 # Initialize GraphRAG instance
-# graphrag = GraphRAG(model_name="gpt-4o-mini")
-rag = RAG(model_name="mistral-small-2506")
+graphrag = GraphRAG(model_name="gpt-4o-mini")
 responses: List[Dict] = []
 first_query_processed = False
 
