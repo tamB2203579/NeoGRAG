@@ -167,11 +167,8 @@ def applyNED(query):
     
 def main():
     query = input ("Enter something: ")
-    applyNED(query)
+    augmented_query = applyNED(query)
+    print(augmented_query)
     
 if __name__ == "__main__":
     main()
-
-
-
-

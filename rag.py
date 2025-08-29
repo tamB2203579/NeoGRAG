@@ -2,7 +2,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_mistralai import ChatMistralAI
-from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from llama_index.core import Document
 from NED import applyNED
@@ -28,10 +27,8 @@ class RAG:
         # Initialize LLM
         if model_name == "gpt-4o-mini":
             self.llm = ChatOpenAI(model=model_name, temperature=0)
-        elif model_name == "mistral-small-2506":
-            self.llm = ChatMistralAI(model=model_name, temperature=0)
         else:
-            self.llm = ChatOllama(model="mistral")
+            self.llm = ChatMistralAI(model=model_name, temperature=0)
             
         # Initialize embedding model
         self.embedded_model = Embedding()

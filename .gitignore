@@ -1,6 +1,8 @@
 # Custom
 model
 .DS_Store
+/storage
+/relationships
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

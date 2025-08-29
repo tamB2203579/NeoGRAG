@@ -30,7 +30,7 @@ class GraphRAG:
         else:
             self.llm = ChatMistralAI(model=model_name, temperature=0)
             
-    def load_excel_data(self, dir="data/processed"):
+    def load_excel_data(self, dir="./data/processed"):
         """
         Load Excel files from a directory and combine them into a DataFrame.
         Each row gets a unique ID.

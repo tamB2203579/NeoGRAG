@@ -8,10 +8,17 @@ from tqdm import tqdm
 import re
 import json
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+URI = os.getenv("NEO4J_URI")
+USERNAME = os.getenv("NEO4J_USERNAME")
+PASSWORD = os.getenv("NEO4J_PASSWORD")
+DATABASE = os.getenv("NEO4J_DATABASE")
 
 class KnowledgeGraph:
-    def __init__(self, uri="bolt://localhost:7687", username="neo4j", password="123123123", database="graphrag"):  # Change the datbase name please
-        self.driver = GraphDatabase.driver(uri, auth=(username, password), database=database)
+    def __init__(self, uri=URI, username=USERNAME, password=PASSWORD, database=DATABASE):
+        self.driver = GraphDatabase.driver(uri=uri, auth=(username, password), database=database)
         self.embed_model = Embedding()
     
     def close(self):

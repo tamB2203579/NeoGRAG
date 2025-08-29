@@ -7,9 +7,9 @@ from sklearn.model_selection import train_test_split
 # Thiết lập đường dẫn
 train_data_path = "./data/classify/train_data.txt"
 test_data_path = "./data/classify/test_data.txt"
-model_path = "./classify/models/fasttext_model.bin"
+model_path = "./model/fasttext_model.bin"
 data_path = "./data/classify/dataset.csv"
-stopwords_path = "./lib/stopwords.txt"
+stopwords_path = "./library/stopwords.txt"
 
 with open(file=stopwords_path, mode="r", encoding="utf-8") as f:
     stopwords = f.read().splitlines()
