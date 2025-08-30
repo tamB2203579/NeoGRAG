@@ -40,7 +40,7 @@ class Embedding(Embeddings):
 class LlamaIndexPhobertEmbedding(BaseEmbedding):
     model_name: str = "vinai/phobert-base-v2"
     max_length: int = 128
-    normalize: bool = True
+    is_normalize: bool = True
 
     _device: Any = PrivateAttr()
     _tokenizer: Any = PrivateAttr()
@@ -60,7 +60,7 @@ class LlamaIndexPhobertEmbedding(BaseEmbedding):
         inputs = {k: v.to(self._device) for k, v in inputs.items()}
         outputs = self._model(**inputs)
         embeddings = outputs.last_hidden_state[:, 0, :]
-        if self.normalize:
+        if self.is_normalize:
             embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
         return embeddings.detach().cpu().tolist()
 
