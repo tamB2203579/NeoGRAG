@@ -58,38 +58,94 @@ class GraphRAG:
             print("No data loaded.")
             return None
             
-    def initialize_system(self, force_reinit=False):
+    def initialize_vector_store(self):
         """
-        Initialize the GraphRAG system:
-        1. Load documents
-        2. Split them into chunks
-        3. Create vector store
-        4. Build knowledge graph with entities and relationships
+        Initialize the vector store:
+        1. Load documents from Excel files
+        2. Create vector embeddings
+        3. Store in vector database
         """
-        print("Initializing GraphRAG system...")
+        print("Initializing vector store...")
         
         # Load chunks data
         df = self.load_excel_data()
         
         if df is not None:
+            # Convert dataframe rows to Document objects
             documents = [Document(text=row['text'], id_=row['id'], metadata={"label": row['label']}) for _, row in df.iterrows()]
-            print(f"Created {len(documents)} documents for indexing")
+            print(f"Created {len(documents)} documents for vector indexing")
             
             if not documents:
                 print("No documents created due to data loading issues")
-                return
+                return False
             
             # Create vector store
-            self.vector_store.create_vector_store(documents)
-            
-            # Build knowledge graph
-            self.knowledge_graph.clear_database()
-            self.knowledge_graph.create_constraints()
-            self.knowledge_graph.build_knowledge_graph(documents)
-            
-            print("GraphRAG initialization completed successfully!")
+            try:
+                self.vector_store.create_vector_store(documents)
+                print("Vector store initialization completed successfully!")
+                return True
+            except Exception as e:
+                print(f"Error creating vector store: {e}")
+                return False
         else:
-            print("Skipping GraphRAG initialization due to missing data")
+            print("Skipping vector store initialization due to missing data")
+            return False
+
+    def initialize_knowledge_graph(self):
+        """
+        Initialize the knowledge graph:
+        1. Load documents from Excel files
+        2. Extract entities and relationships
+        3. Build knowledge graph in Neo4j
+        """
+        print("Initializing knowledge graph...")
+        
+        # Load chunks data
+        df = self.load_excel_data()
+        
+        if df is not None:
+            # Convert dataframe rows to Document objects
+            documents = [Document(text=row['text'], id_=row['id'], metadata={"label": row['label']}) for _, row in df.iterrows()]
+            print(f"Created {len(documents)} documents for knowledge graph building")
+            
+            if not documents:
+                print("No documents created due to data loading issues")
+                return False
+            
+            try:
+                # Clear existing database and create constraints
+                self.knowledge_graph.clear_database()
+                self.knowledge_graph.create_constraints()
+                
+                # Build knowledge graph
+                self.knowledge_graph.build_knowledge_graph(documents)
+                
+                print("Knowledge graph initialization completed successfully!")
+                return True
+            except Exception as e:
+                print(f"Error creating knowledge graph: {e}")
+                return False
+        else:
+            print("Skipping knowledge graph initialization due to missing data")
+            return False
+            
+    def initialize_system(self):
+        """
+        Initialize the complete GraphRAG system:
+        1. Initialize vector store
+        2. Initialize knowledge graph
+        """
+        print("Initializing complete GraphRAG system...")
+        
+        vector_success = self.initialize_vector_store()
+        graph_success = self.initialize_knowledge_graph()
+        
+        if vector_success and graph_success:
+            print("Complete GraphRAG system initialization successful!")
+            return True
+        else:
+            print("GraphRAG system initialization completed with some errors.")
+            return False
             
     def generate_response(self, query, senNED, label=None):
         """
