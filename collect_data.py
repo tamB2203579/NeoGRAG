@@ -33,10 +33,10 @@ os.environ["MISTRAL_API_KEY"] = os.getenv("MISTRAL_API_KEY")
 
 
 # ========== PDF TO MARKDOWN ==========
-def convert_pdf_to_md():
-    for file in os.listdir("data/raw"):
+def convert_pdf_to_md(input_dir="data/raw", output_dir="data/processed"):
+    for file in os.listdir(input_dir):
         if file.endswith(".pdf"):
-            input_path = os.path.join("data/raw", file)
+            input_path = os.path.join(input_dir, file)
             try:
                 ocr_options = EasyOcrOptions(
                     lang=["vie"], force_full_page_ocr=False
@@ -54,7 +54,7 @@ def convert_pdf_to_md():
                 )
                 result = converter.convert(input_path)
                 markdown = result.document.export_to_markdown()
-                output_path = os.path.join("data/processed", file.replace(".pdf", ".md"))
+                output_path = os.path.join(output_dir, file.replace(".pdf", ".md"))
                 pathlib.Path(output_path).write_bytes(markdown.encode())
                 print(f"✓ Converted: {input_path}")
             except Exception as e:
@@ -94,15 +94,15 @@ def chunk_text(text, use_semantic=False):
     return splitter.create_documents([text])
 
 
-def process_md_files(use_semantic=False):
-    for file in tqdm(os.listdir("data/processed")):
+def process_md_files(working_dir="data/processed", use_semantic=False):
+    for file in tqdm(os.listdir(working_dir)):
         if file.endswith(".md"):
-            with open(os.path.join("data/processed", file), "r", encoding="utf-8") as f:
+            with open(os.path.join(working_dir, file), "r", encoding="utf-8") as f:
                 content = f.read()
             content = preprocess_text(apply_vietnamese_spelling_correction(content))
             chunks = chunk_text(content, use_semantic)
             df = pd.DataFrame([{"text": chunk.page_content} for chunk in chunks])
-            output_path = os.path.join("data/processed", file.replace(".md", ".xlsx"))
+            output_path = os.path.join(working_dir, file.replace(".md", ".xlsx"))
             df.to_excel(output_path, index=False, engine="openpyxl")
             print(f"Processed: {file} → {len(chunks)} chunks")
 
@@ -113,9 +113,9 @@ def load_question_prompt():
         return ChatPromptTemplate.from_template(f.read())
 
 
-def load_chunks_from_excel(folder="./data/processed"):
+def load_chunks_from_excel(working_dir="./data/processed"):
     all_chunks = []
-    for path in glob(os.path.join(folder, "*.xlsx")):
+    for path in glob(os.path.join(working_dir, "*.xlsx")):
         try:
             df = pd.read_excel(path, engine="openpyxl")
             for _, row in df.iterrows():

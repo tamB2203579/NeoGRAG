@@ -57,3 +57,16 @@ class VectorStore:
             })
         
         return results
+    
+    def update_vector_store(self, docs):
+        """
+        Add new documents to existing vector store.
+        """
+        index = self.load_vector_store()
+            
+        for doc in docs:
+            index.insert(doc)
+            
+        # Save the updated index
+        index.storage_context.persist(persist_dir=self.storage_dir)
+        return index

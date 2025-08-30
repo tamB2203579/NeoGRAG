@@ -9,6 +9,6 @@ def classify_text(query):
     labels, probabilities = model.predict(query, k=1)
     
     if probabilities[0] >= 0.9:
-        return labels[0].replace('__label__', '')
+        return labels[0]
     else:
         return None

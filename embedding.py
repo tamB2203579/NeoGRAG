@@ -1,7 +1,7 @@
 import os
 import torch
 
-from typing import List, Any
+from typing import List, Any, Union
 from pydantic import PrivateAttr
 
 from transformers import AutoModel, AutoTokenizer
@@ -16,24 +16,26 @@ class Embedding(Embeddings):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModel.from_pretrained(model_name, add_pooling_layer=False).to(self.device)
         self.normalize = True
-        print(f"▶ Embedding model loaded on device: {self.device}")
 
+    @torch.inference_mode()
     def encode(self, text: str):
-        inputs = self.tokenizer(text, return_tensors='pt', truncation=True, padding=True, max_length=128)
+        if isinstance(text, str):
+            texts = [text]
+        else:
+            texts = text
+        inputs = self.tokenizer(texts, return_tensors="pt", truncation=True, padding=True, max_length=128)
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
-        with torch.no_grad():
-            outputs = self.model(**inputs)
+        outputs = self.model(**inputs)
+        embeddings = outputs.last_hidden_state[:, 0, :]
         if self.normalize:
             embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
-        return embeddings.detach().numpy()
+        return embeddings.detach().cpu().numpy() 
 
     def embed_query(self, text: str):
-        embedding = self.encode([text])[0]
-        return embedding.tolist()
+        return self.encode(text)[0].tolist()
     
     def embed_documents(self, docs: List[str]):
-        embeddings = self.encode(docs)
-        return embeddings.tolist()
+        return self.encode(docs).tolist()
 
 
 class LlamaIndexPhobertEmbedding(BaseEmbedding):
@@ -50,24 +52,21 @@ class LlamaIndexPhobertEmbedding(BaseEmbedding):
         self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self._tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         self._model = AutoModel.from_pretrained(self.model_name, add_pooling_layer=False).to(self._device)
-        print(f"▶ Embedding model loaded on device: {self._device}")
+        self._model.eval()
 
     @torch.inference_mode()
-    def _encode(self, texts: List[str]):
-        if not isinstance(texts, list):
-            texts = [texts]
-
-        out: List[List[float]] = []
-        for text in texts:
-            inputs = self._tokenizer(text, return_tensors='pt', truncation=True, padding=True, max_length=128)
-            inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            with torch.no_grad():
-                outputs = self.model(**inputs)
-            embeddings = outputs.last_hidden_state[:, 0, :]
-            if self.normalize:
-                embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
-            out.append(embeddings.detach().tolist()[0])
-        return out
+    def _encode(self, text: Union[List[str], str]):
+        if isinstance(text, str):
+            texts = [text]
+        else:
+            texts = text
+        inputs = self._tokenizer(texts, return_tensors='pt', truncation=True, padding=True, max_length=self.max_length)
+        inputs = {k: v.to(self._device) for k, v in inputs.items()}
+        outputs = self._model(**inputs)
+        embeddings = outputs.last_hidden_state[:, 0, :]
+        if self.normalize:
+            embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
+        return embeddings.detach().cpu().tolist()
 
     def _get_query_embedding(self, query: str):
         return self._encode([query])[0]

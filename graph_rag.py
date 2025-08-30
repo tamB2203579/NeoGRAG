@@ -12,6 +12,7 @@ import os
 
 from knowledge_graph import KnowledgeGraph
 from vector_store import VectorStore
+from classification import classify_text
 
 # Load environment variables
 load_dotenv()
@@ -50,6 +51,7 @@ class GraphRAG:
             print(f"Combined dataset: {len(combined_df)} rows")
 
             combined_df["id"] = [str(uuid4()) for _ in range(len(combined_df))]
+            combined_df["label"] = [classify_text(row['text']) for _, row in combined_df.iterrows()]
 
             return combined_df
         else:
@@ -66,7 +68,7 @@ class GraphRAG:
         """
         print("Initializing GraphRAG system...")
         
-        # Load CSV data
+        # Load chunks data
         df = self.load_excel_data()
         
         if df is not None:
@@ -81,9 +83,9 @@ class GraphRAG:
             self.vector_store.create_vector_store(documents)
             
             # Build knowledge graph
-            # self.knowledge_graph.clear_database()
-            # self.knowledge_graph.create_constraints()
-            # self.knowledge_graph.build_knowledge_graph(documents)
+            self.knowledge_graph.clear_database()
+            self.knowledge_graph.create_constraints()
+            self.knowledge_graph.build_knowledge_graph(documents)
             
             print("GraphRAG initialization completed successfully!")
         else:

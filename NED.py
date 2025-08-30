@@ -1,25 +1,16 @@
-from underthesea import ner
-from transformers import AutoModel, AutoTokenizer
 from sklearn.metrics.pairwise import cosine_similarity
-from tqdm import tqdm
+from underthesea import ner
 from joblib import Memory
+from tqdm import tqdm
 import pandas as pd 
 import numpy as np
-import torch
 import re
 
-model_name = 'vinai/phobert-base-v2'
+from embedding import Embedding
 
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-phobert_model = AutoModel.from_pretrained(model_name)
-
+embed_model = Embedding()
 embedding_cache1 = Memory("cache/embeddingsPhoBert", verbose=0)
     
-# def load_csv():
-#     df = pd.read_csv('content/dataset.csv', encoding='utf-8', sep=";")
-#     df = df.replace('\n', '', regex=True)
-#     return df
-
 def load_abbreviation(path='library/abbreviation.xlsx'):
     ab = pd.read_excel(path)
     abbreviations = dict(zip(ab['Abrreviation'], ab['Full']))
@@ -29,18 +20,6 @@ def load_dictionary(path='library/Dictionary_specialized_word.xlsx'):
     df = pd.read_excel(path)
     return df
    
-@embedding_cache1.cache
-def encode_sentences_PhoBert(sentences, batch_size=32):
-    vectors = []
-    for i in range(0, len(sentences), batch_size):
-        batch = sentences[i:i + batch_size]
-        inputs = tokenizer(batch, return_tensors='pt', truncation=True, padding=True, max_length=128)
-        with torch.no_grad():
-            outputs = phobert_model(**inputs)
-            batch_vecs = outputs.last_hidden_state[:, 0, :].numpy()
-            vectors.append(batch_vecs)
-    return np.vstack(vectors)
-
 def cosine_distance(vector1, vector2):
     # Compute cosine similarity
     similarity = cosine_similarity([vector1], [vector2])
@@ -70,7 +49,7 @@ def applyNED(query):
 
     # Encode the dictionary
     print("Encoding Dictionary with PhoBert")
-    dict_vecs = encode_sentences_PhoBert(dict_entities)
+    dict_vecs = embed_model.embed_documents(dict_entities)
     dict_vecs = np.array(dict_vecs)
     lower_dict = [d.lower() for d in dict_entities]
 
@@ -103,7 +82,7 @@ def applyNED(query):
             continue
 
         # Encode with PhoBert
-        entity_vecs = encode_sentences_PhoBert(noun_entities)
+        entity_vecs = embed_model.embed_documents(noun_entities)
         entity_vecs = np.array(entity_vecs)
         
         # Ensure shape

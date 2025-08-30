@@ -3,7 +3,7 @@ name = "neograg"
 version = "1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.9,<3.13"
 dependencies = [
     "docling==2.40.0",
     "fastapi==0.116.1",
@@ -15,7 +15,9 @@ dependencies = [
     "langchain-openai==0.3.27",
     "llama-index==0.13.3",
     "neo4j==5.28.1",
+    "python-multipart>=0.0.20",
     "transformers==4.53.1",
     "underthesea==6.8.4",
     "uvicorn>=0.35.0",
+    "numpy==1.26.4",
 ]
