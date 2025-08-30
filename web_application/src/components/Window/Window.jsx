@@ -96,7 +96,6 @@ const Window = ({ isOpen, onToggle }) => {
     return marked.parse(markdownText || '');
   };
 
-
   const updateChatHistory = (newChatHistory) => {
     setMessages(newChatHistory);
     setHasSubmitted(newChatHistory.length > 0);

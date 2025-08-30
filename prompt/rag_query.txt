@@ -17,7 +17,6 @@ Your answer must strictly follow the requirements below::
 2. use these NED sentences to clarify the intent of the user’s query before answering
 3. Do NOT generate or assume information not included in the given context. 
 4. Write your answer in Vietnamese, using clear, structured, and easy-to-understand manner. 
-5. If the question is unanswerable or you do NOT have enough information, state "Tôi không biết, có vẻ như câu hỏi của bạn không nằm trong nguồn kiến thức được cung cấp"
-6. Do not refer the sources or information context (e.g: in section x from vector store show that,...) in your answer.
+5. Do not refer the sources or information context (e.g: in section x from vector store show that,...) in your answer.
 
 Answer:
