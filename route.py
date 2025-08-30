@@ -473,6 +473,7 @@ def initializeRouter():
         with open(index_path, "rb") as f:
             index = pickle.load(f)
         rl = SemanticRouter(encoder=encoder, routes=routes, index=index)
+        rl.add(routes)
         print("Router initialized with loaded index.")
     else:
         rl = SemanticRouter(encoder=encoder, routes=routes, index=index)
