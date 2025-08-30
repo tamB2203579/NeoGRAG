@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from typing import List, Dict, Optional, final
 from datetime import datetime
 
-from collect_data import convert_pdf_to_md, process_md_files, load_chunks_from_excel
+from collect_data import convert_pdf_to_md, process_md_files
 from classification import classify_text
 from NED import applyNED
 from knowledge_graph import KnowledgeGraph
@@ -52,10 +52,6 @@ class RetrainResponse(BaseResponse):
     processing_time: Optional[float] = None
     details: Optional[Dict]  = None
 
-class GetResponsesResponse(BaseResponse):
-    responses: List[ResponseData]
-    total_count: int
-
 def answer_query(query: str) -> str:
     label = classify_text(query)
     senNED = applyNED(query)
@@ -81,15 +77,6 @@ async def ask_question(data: ResponseData):
     except Exception as e:
         logging.error(f"Query processing failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Query processing failed {str(e)}")
-
-@app.get("/responses", response_model=GetResponsesResponse)
-async def get_responses():
-    return GetResponsesResponse(
-        status="success",
-        message="Responses retrieved successfully",
-        responses=responses,
-        total_count=len(responses)
-    )
 
 @app.post("/upload", response_model=List[UploadResponse])
 async def upload_pdfs(files: List[UploadFile] = File(...)):

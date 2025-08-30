@@ -128,7 +128,6 @@ const Window = ({ isOpen, onToggle }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query: userMessage,
-        session_id: currentThread,
         response: ''
       }),
     });
