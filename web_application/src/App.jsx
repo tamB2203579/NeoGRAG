@@ -29,6 +29,7 @@ import WebFont from 'webfontloader'
 
 import Home from './pages/Home'
 import Auth from './pages/Auth/Auth'
+import Upload from './pages/Upload/Upload'
 import './index.css'
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/upload" element={<Upload />} />
       </Routes>
     </Router>
   )
