@@ -146,6 +146,26 @@ class GraphRAG:
         else:
             print("GraphRAG system initialization completed with some errors.")
             return False
+        
+    def chitchat_resposne(self, query):
+        """
+        Generate chitchat response
+        """
+        template = """
+            You are a helpful AI assistant that answer base on user input: {query}. Be nice and gentle in an academic way.
+        """
+        prompt = ChatPromptTemplate.from_template(template)
+        
+        chain = (
+            prompt
+            | self.llm
+            | StrOutputParser()
+        )
+        response = chain.invoke({"query": query})
+        return {
+            "query": query,
+            "response": response
+        }
             
     def generate_response(self, query, senNED, label=None):
         """
