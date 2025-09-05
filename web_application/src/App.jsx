@@ -47,7 +47,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/chat" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/upload" element={<Upload />} />
       </Routes>
