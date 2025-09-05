@@ -18,6 +18,8 @@ import white_message_icon from './white_message_icon.png'
 import white_menu_icon from './white_menu_icon.png'
 import home_icon from './home_icon.png'
 import white_home_icon from './white_home_icon.png'
+import ctu from './ctu.png'
+import auth_bg from './auth_bg.png'
 
 export const assets = {
     history_icon,
@@ -39,5 +41,7 @@ export const assets = {
     white_message_icon,
     white_menu_icon,
     home_icon,
-    white_home_icon
+    white_home_icon,
+    ctu,
+    auth_bg
 }
