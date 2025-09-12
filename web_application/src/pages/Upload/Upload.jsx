@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import "./Upload.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Auth/AuthContext";
 
 export default function Upload() {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
 
+  const handleLogout = () => {
+    logout();    
+    navigate("/auth");
+  }
+  
   const handleFileChange = (e) => {
     setFiles([...files, ...Array.from(e.target.files)]);
   };
@@ -14,7 +26,52 @@ export default function Upload() {
     setFiles(newFiles);
   };
 
+  const handleUpload = async () => {
+    if (files.length === 0) return;
+
+    setUploading(true);
+
+    try {
+      const formData = new FormData();
+      files.forEach((file) => formData.append("files", file));
+
+      const uploadRes = await fetch("http://localhost:8000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const uploadData = await uploadRes.json();
+
+      if (!uploadRes.ok) {
+        throw new Error(uploadData.detail || "Upload failed");
+      }
+
+      const trainRes = await fetch("http://localhost:8000/train", {
+        method: "POST",
+      });
+
+      const trainData = await trainRes.json();
+
+      if (!trainRes.ok) {
+        throw new Error(trainData.detail || "Training failed");
+      }
+
+      toast.success(
+        `Tệp đã được tải lên và huấn luyện thành công!`
+      );
+      setFiles([]);
+    } catch (err) {
+      toast.error(`Lỗi: ${err.message}`);
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
+    <div className="upload-page">
+    <button className="btn-logout" onClick={handleLogout}>
+      Đăng xuất
+    </button>
     <div className="upload-container">
       <h2 className="upload-title">Hệ thống Quản lý tài liệu REBot</h2>
 
@@ -27,7 +84,7 @@ export default function Upload() {
           hidden
         />
         <div className="dropzone-content">
-          <span class="material-symbols-outlined plus-icon">add_2</span>
+          <span className="material-symbols-outlined plus-icon">add_2</span>
           <p>Kéo & thả hoặc bấm để chọn file</p>
           <small>Dung lượng tối đa: 10MB</small>
         </div>
@@ -61,8 +118,17 @@ export default function Upload() {
       )}
 
       {files.length > 0 && (
-        <button className="btn-upload">Tải lên</button>
+        <button
+          className="btn-upload"
+          onClick={handleUpload}
+          disabled={uploading}
+        >
+          {uploading ? "Đang xử lý..." : "Tải lên"}
+        </button>
       )}
+
+      <ToastContainer position="top-right" autoClose={3000} />
+    </div>
     </div>
   );
 }

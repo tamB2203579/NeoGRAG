@@ -4,8 +4,10 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase.config";
 import "./Auth.css";
 import { assets } from "../../assets/assets";
+import { useAuth } from "./AuthContext";
 
 export default function Auth() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +27,7 @@ export default function Auth() {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
+        login();
         navigate("/upload");
       } else {
         setError("Email hoặc mật khẩu không đúng!");
