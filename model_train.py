@@ -5,10 +5,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 # Thiết lập đường dẫn
-train_data_path = "./data/classify/train_data.txt"
-test_data_path = "./data/classify/test_data.txt"
-model_path = "./model/fasttext_model.bin"
-data_path = "./data/classify/dataset.csv"
+# train_data_path = "./data/classify/train_data.txt"
+# test_data_path = "./data/classify/test_data.txt"
+# model_path = "./model/fasttext_model.bin"
+# data_path = "./data/classify/dataset.csv"
+# stopwords_path = "./library/stopwords.txt"
+train_data_path = "./data/classify/binary_train_data.txt"
+test_data_path = "./data/classify/binary_test_data.txt"
+model_path = "./model/binary_model.bin"
+data_path = "./data/classify/binary.csv"
 stopwords_path = "./library/stopwords.txt"
 
 with open(file=stopwords_path, mode="r", encoding="utf-8") as f:

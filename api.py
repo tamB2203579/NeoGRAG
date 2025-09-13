@@ -6,11 +6,11 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from llama_index.core import Document
 from pydantic import BaseModel
-from typing import List, Dict, Optional, final
+from typing import List, Dict, Optional
 from datetime import datetime
 
 from collect_data import convert_pdf_to_md, process_md_files
-from classification import classify_text
+from classification import classify_text, classify_binary
 from NED import applyNED
 from knowledge_graph import KnowledgeGraph
 from vector_store import VectorStore
@@ -53,10 +53,15 @@ class RetrainResponse(BaseResponse):
     details: Optional[Dict]  = None
 
 def answer_query(query: str) -> str:
-    label = classify_text(query)
-    senNED = applyNED(query)
-    result = graphrag.generate_response(query=query, senNED=senNED, label=label)
-    return result["response"]
+    binary_label = classify_binary(query).replace("__label__", "")
+    if binary_label == "chitchat":
+        result = graphrag.chitchat_resposne(query)
+        return result["response"]
+    elif binary_label == "Academic":
+        label = classify_text(query)
+        senNED = applyNED(query)
+        result = graphrag.generate_response(query=query, senNED=senNED, label=label)
+        return result["response"]
 
 @app.post("/ask", response_model=AskQuestionResponse)
 async def ask_question(data: ResponseData):

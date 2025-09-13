@@ -3,6 +3,7 @@ model
 .DS_Store
 /storage
 /relationships
+/data/uploaded
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

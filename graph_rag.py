@@ -30,7 +30,7 @@ class GraphRAG:
             self.llm = ChatOpenAI(model=model_name, temperature=0)
         else:
             self.llm = ChatMistralAI(model=model_name, temperature=0)
-            
+
     def load_excel_data(self, dir="./data/processed"):
         """
         Load Excel files from a directory and combine them into a DataFrame.
@@ -146,6 +146,33 @@ class GraphRAG:
         else:
             print("GraphRAG system initialization completed with some errors.")
             return False
+        
+    def chitchat_resposne(self, query):
+        """
+        Generate chitchat response
+        """
+        template = """
+            You are a CTU helpful AI assistant named "REBot" that answer base on user input: {query}. Be nice and gentle in an academic way.
+            Your task is to answer questions about the university’s regulations, procedures, and policies accurately and helpfully.
+
+            Requirements:
+            + Try to introduce yourself including your name, your jobs.
+            + For chitchat query of the user, answer in a nicely and gently way and try to guide the user ask about CTU.
+            + Avoid answer query's topics that relating to terrorism, reactionary or swear.
+            + Answer in **Vietnamese**
+        """
+        prompt = ChatPromptTemplate.from_template(template)
+        
+        chain = (
+            prompt
+            | self.llm
+            | StrOutputParser()
+        )
+        response = chain.invoke({"query": query})
+        return {
+            "query": query,
+            "response": response
+        }
             
     def generate_response(self, query, senNED, label=None):
         """
