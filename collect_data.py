@@ -32,7 +32,6 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["MISTRAL_API_KEY"] = os.getenv("MISTRAL_API_KEY")
 
 
-# ========== PDF TO MARKDOWN ==========
 def convert_pdf_to_md(input_dir="data/raw", output_dir="data/processed"):
     for file in os.listdir(input_dir):
         if file.endswith(".pdf"):
@@ -61,7 +60,6 @@ def convert_pdf_to_md(input_dir="data/raw", output_dir="data/processed"):
                 print(f"✗ Error processing {file}: {e}")
 
 
-# ========== TEXT CLEANING / CHUNKING ==========
 def preprocess_text(text):
     words = text.split()
     processed = [w if w.isupper() else w.lower() for w in words]
@@ -107,7 +105,6 @@ def process_md_files(working_dir="data/processed", use_semantic=False):
             print(f"Processed: {file} → {len(chunks)} chunks")
 
 
-# ========== QUESTION GENERATION ==========
 def load_question_prompt():
     with open("prompt/question_generate.txt", "r", encoding="utf-8") as f:
         return ChatPromptTemplate.from_template(f.read())
@@ -191,7 +188,6 @@ def preview_generated_questions(num=5):
             print(f"{i + 1}. Q: {qa['question']}\n   A: {qa['answer']}\n")
 
 
-# ========== CLI MAIN ==========
 def main():
     while True:
         print("\n--- MENU ---")
