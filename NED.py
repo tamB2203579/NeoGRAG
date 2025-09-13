@@ -13,7 +13,7 @@ embedding_cache1 = Memory("cache/embeddingsPhoBert", verbose=0)
     
 def load_abbreviation(path='library/abbreviation.xlsx'):
     ab = pd.read_excel(path)
-    abbreviations = dict(zip(ab['Abrreviation'], ab['Full']))
+    abbreviations = dict(zip(ab['abbreviation'], ab['full']))
     return abbreviations 
 
 def load_dictionary(path='library/Dictionary_specialized_word.xlsx'):

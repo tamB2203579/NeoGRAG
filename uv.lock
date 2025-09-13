@@ -1828,6 +1828,7 @@ dependencies = [
     { name = "neo4j" },
     { name = "numpy" },
     { name = "python-multipart" },
+    { name = "sentence-transformers" },
     { name = "transformers" },
     { name = "underthesea" },
     { name = "uvicorn" },
@@ -1847,6 +1848,7 @@ requires-dist = [
     { name = "neo4j", specifier = "==5.28.1" },
     { name = "numpy", specifier = "==1.26.4" },
     { name = "python-multipart", specifier = ">=0.0.20" },
+    { name = "sentence-transformers", specifier = ">=5.1.0" },
     { name = "transformers", specifier = "==4.53.1" },
     { name = "underthesea", specifier = "==6.8.4" },
     { name = "uvicorn", specifier = ">=0.35.0" },
@@ -3503,6 +3505,28 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/62/96/c418c322730b385e81d4ab462e68dd48bb2dbda4d8efa17cad2ca468d9ac/semchunk-2.2.2.tar.gz", hash = "sha256:940e89896e64eeb01de97ba60f51c8c7b96c6a3951dfcf574f25ce2146752f52", size = 12271, upload-time = "2024-12-17T22:54:30.332Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/84/94ca7896c7df20032bcb09973e9a4d14c222507c0aadf22e89fa76bb0a04/semchunk-2.2.2-py3-none-any.whl", hash = "sha256:94ca19020c013c073abdfd06d79a7c13637b91738335f3b8cdb5655ee7cc94d2", size = 10271, upload-time = "2024-12-17T22:54:27.689Z" },
+]
+
+[[package]]
+name = "sentence-transformers"
+version = "5.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "huggingface-hub" },
+    { name = "pillow" },
+    { name = "scikit-learn", version = "1.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
+    { name = "scikit-learn", version = "1.7.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+    { name = "scipy", version = "1.13.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
+    { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
+    { name = "scipy", version = "1.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "torch" },
+    { name = "tqdm" },
+    { name = "transformers" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/46/b8/1b99379b730bc403d8e9ddc2db56f8ac9ce743734b44a1dbeebb900490d4/sentence_transformers-5.1.0.tar.gz", hash = "sha256:70c7630697cc1c64ffca328d6e8688430ebd134b3c2df03dc07cb3a016b04739", size = 370745, upload-time = "2025-08-06T13:48:55.226Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6d/70/2b5b76e98191ec3b8b0d1dde52d00ddcc3806799149a9ce987b0d2d31015/sentence_transformers-5.1.0-py3-none-any.whl", hash = "sha256:fc803929f6a3ce82e2b2c06e0efed7a36de535c633d5ce55efac0b710ea5643e", size = 483377, upload-time = "2025-08-06T13:48:53.627Z" },
 ]
 
 [[package]]

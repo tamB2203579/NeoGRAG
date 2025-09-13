@@ -4,6 +4,7 @@ model
 /storage
 /relationships
 /data/uploaded
+/result
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
