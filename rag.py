@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 import os
 import re
 
-from docling.datamodel.pipeline_options import PdfPipelineOptions, TableFormerMode, TesseractOcrOptions
+from docling.datamodel.pipeline_options import PdfPipelineOptions, TableFormerMode, EasyOcrOptions
 from docling.document_converter import DocumentConverter
 from docling.document_converter import PdfFormatOption
 from docling.datamodel.base_models import InputFormat
@@ -58,7 +58,7 @@ class RAG:
     
     def read_pdf_to_string(self, path):
         # Initialize document converter with proper options
-        ocr_options = TesseractOcrOptions(
+        ocr_options = EasyOcrOptions(
             lang=["vie"],
             force_full_page_ocr=False
         )
