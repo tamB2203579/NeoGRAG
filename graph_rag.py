@@ -2,7 +2,8 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_mistralai import ChatMistralAI
 from langchain_openai import ChatOpenAI
-from llama_index.core import Document
+from llama_index.core import Document, SimpleDirectoryReader
+from llama_index.readers.file import PandasExcelReader
 from dotenv import load_dotenv
 from uuid import uuid4
 from glob import glob
@@ -58,7 +59,7 @@ class GraphRAG:
             print("No data loaded.")
             return None
             
-    def initialize_vector_store(self):
+    def initialize_vector_store(self, data_dỉr="./data/processed"):
         """
         Initialize the vector store:
         1. Load documents from Excel files
@@ -68,27 +69,20 @@ class GraphRAG:
         print("Initializing vector store...")
         
         # Load chunks data
-        df = self.load_excel_data()
+        documents = SimpleDirectoryReader(
+            input_dir=data_dỉr,
+            file_extractor={
+                ".xlsx": PandasExcelReader(),
+            }
+        ).load_data()
         
-        if df is not None:
-            # Convert dataframe rows to Document objects
-            documents = [Document(text=row['text'], id_=row['id'], metadata={"label": row['label']}) for _, row in df.iterrows()]
-            print(f"Created {len(documents)} documents for vector indexing")
-            
-            if not documents:
-                print("No documents created due to data loading issues")
-                return False
-            
-            # Create vector store
-            try:
-                self.vector_store.create_vector_store(documents)
-                print("Vector store initialization completed successfully!")
-                return True
-            except Exception as e:
-                print(f"Error creating vector store: {e}")
-                return False
-        else:
-            print("Skipping vector store initialization due to missing data")
+        # Create vector store
+        try:
+            self.vector_store.create_vector_store(documents)
+            print("Vector store initialization completed successfully!")
+            return True
+        except Exception as e:
+            print(f"Error creating vector store: {e}")
             return False
 
     def initialize_knowledge_graph(self):
