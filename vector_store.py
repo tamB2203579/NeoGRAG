@@ -1,10 +1,17 @@
-from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage, Settings
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext, load_index_from_storage, Settings
+from llama_index.vector_stores.faiss import FaissVectorStore
+from llama_index.readers.file import PandasExcelReader
 from embedding import LlamaIndexPhobertEmbedding
+import logging
+import faiss
 import os
 
+logger = logging.getLogger(__name__)
+
 class VectorStore:
-    def __init__(self, storage_dir="./storage"):
+    def __init__(self, storage_dir="./storage", data_dir="./data/processed"):
         self.storage_dir = storage_dir
+        self.data_dir = data_dir
         self.embed_model = LlamaIndexPhobertEmbedding()
         Settings.embed_model = self.embed_model
         # Create storage directory if it doesn't exist
@@ -16,10 +23,11 @@ class VectorStore:
         """
         # Create vector store index
         print("Creating vector index...")
-        vector_index = VectorStoreIndex.from_documents(
-            docs,
-            show_progress=True
-        )
+        d = 768
+        faiss_index = faiss.IndexFlatL2(d)
+        vector_store = FaissVectorStore(faiss_index=faiss_index)
+        storage_context = StorageContext.from_defaults(vector_store=vector_store)
+        vector_index = VectorStoreIndex.from_documents(docs, storage_context=storage_context, show_progress=True)
 
         # Save the index to disk
         print("Saving vector index to storage...")
@@ -35,9 +43,25 @@ class VectorStore:
         if not os.path.exists(self.storage_dir):
             raise FileNotFoundError(f"Storage directory '{self.storage_dir}' does not exist.")
             
-        storage_context = StorageContext.from_defaults(persist_dir=self.storage_dir)
-        loaded_index = load_index_from_storage(storage_context)
-        return loaded_index
+        # Check if the directory is not empty before trying to load
+        if os.listdir(self.storage_dir):
+            logger.info(f"Loading vector store from {self.storage_dir}")
+            vector_store = FaissVectorStore.from_persist_dir(self.storage_dir)
+            storage_context = StorageContext.from_defaults(
+                persist_dir=self.storage_dir, vector_store=vector_store
+            )
+            loaded_index = load_index_from_storage(storage_context=storage_context)
+            return loaded_index
+        else:
+            logger.info("Creating new vector store")
+            docs = SimpleDirectoryReader(
+                input_dir=self.data_dir,
+                file_extractor={
+                    ".xlsx": PandasExcelReader(),
+                }
+            ).load_data()
+            index = self.create_vector_store(docs)
+            return index
         
     def get_vector_results(self, query, top_k=5):
         """
