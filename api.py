@@ -52,9 +52,10 @@ class RetrainResponse(BaseResponse):
     processing_time: Optional[float] = None
     details: Optional[Dict]  = None
 
-def answer_query(query: str) -> str:
-    binary_label = classify_binary(query).replace("__label__", "")
-    if binary_label == "chitchat":
+def answer_query(query):
+    binary_label_raw = classify_binary(query)
+    binary_label = binary_label_raw.replace("__label__", "") if binary_label_raw else ""
+    if binary_label == "chitchat" or binary_label == "":
         result = graphrag.chitchat_resposne(query)
         return result["response"]
     elif binary_label == "Academic":
