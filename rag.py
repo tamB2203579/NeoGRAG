@@ -138,20 +138,3 @@ class RAG:
             "vector_context": vector_context,
         }
     
-    def interactive_query(self):
-        """
-        Run an interactive query loop for the RAG system.
-        """
-        print("\nRAG Query System")
-        print("Type 'q' to exit")
-        
-        while True:
-            query = input("\nNhập câu hỏi của bạn: ")
-            if query.lower() == "q":
-                break
-            
-            senNED = applyNED(query)
-            
-            result = self.generate_response(query, senNED)
-            print("\nAnswer: ", result["response"])
-            print("\nVector context: ", result["vector_context"])

@@ -213,28 +213,3 @@ class GraphRAG:
             "vector_context": vector_context,
             "graph_context": graph_context
         }
-
-    def interactive_query(self, classifier=None):
-        """
-        Run an interactive query loop for the GraphRAG system.
-        """
-        print("\nGraphRAG Query System")
-        print("Type 'q' to exit")
-        
-        while True:
-            query = input("\nNhập câu hỏi của bạn: ")
-            if query.lower() == "q":
-                break
-            
-            label = None
-            if classifier:
-                try:
-                    label = classifier.classify_text(query)
-                    print(f"Classified as: {label}")
-                except Exception as e:
-                    print(f"Classification error: {e}")
-
-            senNED = applyNED(query)
-            
-            result = self.generate_response(query, senNED, label)
-            print(result["response"])
