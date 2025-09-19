@@ -14,7 +14,6 @@ import os
 from knowledge_graph import KnowledgeGraph
 from vector_store import VectorStore
 from classification import classify_text
-from langchain.memory import ConversationBufferMemory
 
 # Load environment variables
 load_dotenv()
@@ -26,7 +25,6 @@ class GraphRAG:
         # Initialize components
         self.knowledge_graph = KnowledgeGraph()
         self.vector_store = VectorStore()
-        self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
         
         # Initialize LLM
         if model_name == "gpt-4o-mini":
@@ -147,13 +145,6 @@ class GraphRAG:
         """
         Generate chitchat response
         """
-        if history:
-            for msg in history:
-                if msg['type'] == 'user':
-                    self.memory.save_context({"input": msg['content']}, {"output": ""})
-                else:
-                    self.memory.save_context({"input": ""}, {"output": msg['content']})
-
         with open("prompt/chitchat.txt", "r", encoding="utf-8") as f:
             template = f.read()
         
@@ -166,9 +157,8 @@ class GraphRAG:
         )
         response = chain.invoke({
             "query": query,
-            "chat_history": self.memory.load_memory_variables({})["chat_history"]
+            "chat_history": history
         })
-        self.memory.save_context({"input": query}, {"output": response})
         return {
             "query": query,
             "response": response
@@ -178,13 +168,6 @@ class GraphRAG:
         """
         Generate a response using the GraphRAG system.
         """
-        if history:
-            for msg in history:
-                if msg['type'] == 'user':
-                    self.memory.save_context({"input": msg['content']}, {"output": ""})
-                else:
-                    self.memory.save_context({"input": ""}, {"output": msg['content']})
-
         # Get vector results
         vector_results = self.vector_store.get_vector_results(query, top_k=5)
         
@@ -219,9 +202,8 @@ class GraphRAG:
             "graph_context": graph_context,
             "label": label,
             "NED": senNED,
-            "chat_history": self.memory.load_memory_variables({})["chat_history"]
+            "chat_history": history
         })
-        self.memory.save_context({"input": query}, {"output": response})
         
         return {
             "query": query,

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { assets } from '../../assets/assets';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, addDoc, getDoc, updateDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
 import WebFont from 'webfontloader';
 import Sidebar from '../Sidebar/Sidebar';
@@ -71,17 +71,10 @@ const Window = ({ isOpen, onToggle }) => {
     timestamp: new Date().toISOString(),
   });
 
-  const updateThreadContent = async (updatedHistory) => {
-    if (!currentThread) {
-      console.log('Chưa chọn thread');
-      return;
-    }
-    console.log('Đang cập nhật nội dung thread...');
-    const threadRef = doc(db, 'threads', currentThread);
+  const updateThreadContent = async (threadId, updatedHistory) => {
     try {
-      await updateDoc(threadRef, {
-        contents: updatedHistory,
-      });
+      const threadRef = doc(db, "threads", threadId);
+      await updateDoc(threadRef, {contents: updatedHistory});
       console.log('Cập nhật nội dung thread thành công');
     } catch (e) {
       console.error('Lỗi cập nhật nội dung thread:', e);
@@ -102,63 +95,85 @@ const Window = ({ isOpen, onToggle }) => {
   };
 
   const onHandleSubmit = async (e) => {
-  e.preventDefault();
-  const userMessage = input.trim();
-  if (!userMessage) return;
+    e.preventDefault();
+    const userMessage = input.trim();
+    if (!userMessage) return;
+    
+    setInput('');
+    setHasSubmitted(true);
 
-  if (!currentThread) {
-    alert('Vui lòng chọn hoặc tạo cuộc trò chuyện trước.');
-    return;
-  }
+    const userMsg = createMsgElement(userMessage, 'user');
 
-  setInput('');
-  setHasSubmitted(true);
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages, userMsg];
+      if (currentThread) {
+        updateThreadContent(currentThread, updatedMessages);
+      }
+      return updatedMessages;
+    });
 
-  const userMsg = createMsgElement(userMessage, 'user');
-  setMessages((prevMessages) => [...prevMessages, userMsg]);
+    let threadId = currentThread;
+    if (!threadId) {
+      try{ 
+        const threadRef = await addDoc(collection(db, 'threads'), {
+          title: 'Cuộc trò chuyện mới',
+          contents: [],
+          timestamp: serverTimestamp(),
+        });
+        threadId = threadRef.id;
+        setCurrentThread(threadId);
+        setMessages((prevMessages) => {
+          const updatedMessages = [...prevMessages];
+          updateThreadContent(threadId, updatedMessages);
+          return updatedMessages;
+        });
+      } catch (error) {
+        console.error('Error creating thread:', error);
+       return;
+      }
+    }
 
-  try {
     setIsLoading(true);
-
     const loadingMsg = createMsgElement('', 'bot', true);
     setMessages((prevMessages) => [...prevMessages, loadingMsg]);
 
-    const res = await fetch('http://localhost:8000/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: userMessage,
-        response: ''
-      }),
-    });
-
-    const data = await res.json();
-    const botResponse = data?.data?.response;
-
-    const htmlContent = formatMarkdownToHTML(botResponse);
-
-    setIsLoading(false);
-
-    if (botResponse) {
-      setMessages((prevMessages) => {
-        const filtered = prevMessages.filter(
-          (msg) => !msg.loading && msg.content.trim() !== ''
-        );
-        const botMsg = createMsgElement(htmlContent, 'bot');
-        const updated = [...filtered, botMsg];
-
-        updateThreadContent(updated);
-        return updated;
+    const latestHistory = [...messages, userMsg].slice(-10).map((msg) => ({
+      type: msg.type,
+      role: msg.type === "user" ? "user" : "assistant",
+      content: msg.content,
+    }));
+    try {
+      const res = await fetch('http://localhost:8000/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: userMessage,
+          response: '',
+          history: latestHistory,
+        }),
       });
+      const data = await res.json();
+      const botResponse = data?.data?.response;
+      const htmlContent = formatMarkdownToHTML(botResponse);
+
+      if (botResponse) {
+        setMessages((prevMessages) => {
+          const filtered = prevMessages.filter(
+            (msg) => !msg.loading && msg.content.trim() !== ''
+          );
+          const botMsg = createMsgElement(htmlContent, 'bot');
+          const updated = [...filtered, botMsg];
+          updateThreadContent(threadId, updated);
+          return updated;
+        });
+      }
+    } catch (error) {
+      console.error("Lỗi:", error);
+      setMessages((prev) => prev.filter((msg) => !msg.loading));
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error('Lỗi:', error);
-    setIsLoading(false);
-    setMessages((prevMessages) =>
-      prevMessages.filter((msg) => !msg.loading)
-    );
-  }
-};
+  };
 
 
   return (
@@ -184,11 +199,11 @@ const Window = ({ isOpen, onToggle }) => {
               >
                 {msg.type === 'bot' ? (
                   <>
-                    <img src={assets.bot_avatar} alt="" className="avatar" />
+                    <img src={assets.bot_avatar} alt="bot-icon" className="avatar" />
                     <div
                       className="message-text"
                       dangerouslySetInnerHTML={{
-                        __html: msg.loading ? 'Đang tải...' : msg.content,
+                        __html: msg.loading ? 'Đang suy nghĩ...' : msg.content,
                       }}
                     ></div>
                   </>

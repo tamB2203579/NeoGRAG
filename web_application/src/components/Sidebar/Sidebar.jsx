@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { doc, collection, addDoc, getDoc, getDocs, Timestamp } from 'firebase/firestore';
+import { onSnapshot, doc, collection, getDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
 import WebFont from 'webfontloader';
 import { assets } from '../../assets/assets';
@@ -18,42 +18,35 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
       },
     });
 
-    const fetchThreads = async () => {
-      try {
-        const threadsCollection = collection(db, 'threads');
-        const threadsSnapshot = await getDocs(threadsCollection);
-        const threadsList = threadsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          title: doc.data().title || 'Cuộc trò chuyện mới',
-          timestamp: doc.data().timestamp,
-        }));
-        setThreads(threadsList.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds));
-      } catch (error) {
-        console.error('Lỗi tải danh sách thread:', error);
-      }
-    };
+    const threadsCollection = collection(db, 'threads');
+    const q = query(threadsCollection, orderBy('timestamp', 'desc'));
+    
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const threadsList = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        title: doc.data().title || 'Cuộc trò chuyện mới',
+        timestamp: doc.data().timestamp,
+      }));
+      setThreads(threadsList);
+    }, (error) => {
+      console.error('Lỗi tải danh sách thread:', error);
+    });
 
-    fetchThreads();
+    return () => unsubscribe();
   }, []);
 
-  const createThread = async () => {
-    try {
-      const threadRef = await addDoc(collection(db, 'threads'), {
-        title: 'Cuộc trò chuyện mới',
-        contents: [],
-        timestamp: Timestamp.now(),
-      });
+  const handleDeleteThread = async (threadId) => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?')) {
+      try {
+        await deleteDoc(doc(db, 'threads', threadId));
 
-      const newThread = {
-        id: threadRef.id,
-        title: 'Cuộc trò chuyện mới',
-        timestamp: Timestamp.now(),
-      };
-      setThreads((prev) => [newThread, ...prev.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)]);
+        updateCurrentThread(null);
+        updateChatHistory([]);
 
-      handleThreadClick(threadRef.id);
-    } catch (error) {
-      console.error('Lỗi tạo thread:', error);
+        setThreads((prev) => prev.filter((thread) => thread.id !== threadId));
+      } catch (error) {
+        console.error('Lỗi xóa thread:', error);
+      }
     }
   };
 
@@ -98,7 +91,10 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
           onClick={() => window.location.replace('/landing.html')}
         />
 
-        <div className="new-chat" onClick={createThread}>
+        <div className="new-chat" onClick={() => {
+          updateCurrentThread(null);
+          updateChatHistory([]);
+        }}>
           <img src={assets.plus_icon} alt="" />
           <p>Cuộc trò chuyện mới</p>
         </div>
@@ -114,6 +110,14 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
               >
                 <img src={assets.white_message_icon} alt="" />
                 <p>{thread.title}</p>
+                <img
+                  src={assets.delete_icon}
+                  alt='delete'
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent triggering parent click
+                    handleDeleteThread(thread.id);
+                  }}
+                />
               </div>
             ))}
           </div>

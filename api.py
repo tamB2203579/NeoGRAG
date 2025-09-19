@@ -52,22 +52,27 @@ class RetrainResponse(BaseResponse):
     processing_time: Optional[float] = None
     details: Optional[Dict]  = None
 
-def answer_query(query):
+class RequestData(BaseModel):
+    query: str
+    history: Optional[List[Dict]] = None
+    response: str = ""
+
+def answer_query(query, history=None):
     binary_label_raw = classify_binary(query)
     binary_label = binary_label_raw.replace("__label__", "") if binary_label_raw else ""
     if binary_label == "chitchat" or binary_label == "":
-        result = graphrag.chitchat_resposne(query)
+        result = graphrag.chitchat_resposne(query, history)
         return result["response"]
     elif binary_label == "Academic":
         label = classify_text(query)
         senNED = applyNED(query)
-        result = graphrag.generate_response(query=query, senNED=senNED, label=label)
+        result = graphrag.generate_response(query=query, senNED=senNED, label=label, history=history)
         return result["response"]
 
 @app.post("/ask", response_model=AskQuestionResponse)
-async def ask_question(data: ResponseData):
+async def ask_question(data: RequestData):
     try:
-        response_text = answer_query(data.query)
+        response_text = answer_query(data.query, data.history if hasattr(data, 'history') else None)
 
         result = ResponseData(
             query = data.query,

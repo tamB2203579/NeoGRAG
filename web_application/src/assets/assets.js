@@ -21,6 +21,7 @@ import white_home_icon from './white_home_icon.png'
 import ctu from './ctu.png'
 import auth_bg from './auth_bg.png'
 import delete_icon from "./delete_icon.png"
+import bot_avatar from "./bot_avatar.png"
 
 export const assets = {
     history_icon,
@@ -45,5 +46,6 @@ export const assets = {
     white_home_icon,
     ctu,
     auth_bg,
-    delete_icon
+    delete_icon,
+    bot_avatar
 }
