@@ -14,6 +14,7 @@ import os
 from knowledge_graph import KnowledgeGraph
 from vector_store import VectorStore
 from classification import classify_text
+from langchain.memory import ConversationBufferMemory
 
 # Load environment variables
 load_dotenv()
@@ -25,6 +26,7 @@ class GraphRAG:
         # Initialize components
         self.knowledge_graph = KnowledgeGraph()
         self.vector_store = VectorStore()
+        self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
         
         # Initialize LLM
         if model_name == "gpt-4o-mini":
@@ -141,20 +143,20 @@ class GraphRAG:
             print("GraphRAG system initialization completed with some errors.")
             return False
         
-    def chitchat_resposne(self, query):
+    def chitchat_resposne(self, query, history=None):
         """
         Generate chitchat response
         """
-        template = """
-            You are a CTU helpful AI assistant named "REBot" that answer base on user input: {query}. Be nice and gentle in an academic way.
-            Your task is to answer questions about the university’s regulations, procedures, and policies accurately and helpfully.
+        if history:
+            for msg in history:
+                if msg['type'] == 'user':
+                    self.memory.save_context({"input": msg['content']}, {"output": ""})
+                else:
+                    self.memory.save_context({"input": ""}, {"output": msg['content']})
 
-            Requirements:
-            + Try to introduce yourself including your name, your jobs.
-            + For chitchat query of the user, answer in a nicely and gently way and try to guide the user ask about CTU.
-            + Avoid answer query's topics that relating to terrorism, reactionary or swear.
-            + Answer in **Vietnamese**
-        """
+        with open("prompt/chitchat.txt", "r", encoding="utf-8") as f:
+            template = f.read()
+        
         prompt = ChatPromptTemplate.from_template(template)
         
         chain = (
@@ -162,16 +164,27 @@ class GraphRAG:
             | self.llm
             | StrOutputParser()
         )
-        response = chain.invoke({"query": query})
+        response = chain.invoke({
+            "query": query,
+            "chat_history": self.memory.load_memory_variables({})["chat_history"]
+        })
+        self.memory.save_context({"input": query}, {"output": response})
         return {
             "query": query,
             "response": response
         }
             
-    def generate_response(self, query, senNED, label=None):
+    def generate_response(self, query, senNED, label=None, history=None):
         """
         Generate a response using the GraphRAG system.
         """
+        if history:
+            for msg in history:
+                if msg['type'] == 'user':
+                    self.memory.save_context({"input": msg['content']}, {"output": ""})
+                else:
+                    self.memory.save_context({"input": ""}, {"output": msg['content']})
+
         # Get vector results
         vector_results = self.vector_store.get_vector_results(query, top_k=5)
         
@@ -199,13 +212,16 @@ class GraphRAG:
             | StrOutputParser()
         )
         
+        # Save context and get response
         response = chain.invoke({
             "query": query,
             "vector_context": vector_context,
             "graph_context": graph_context,
             "label": label,
             "NED": senNED,
+            "chat_history": self.memory.load_memory_variables({})["chat_history"]
         })
+        self.memory.save_context({"input": query}, {"output": response})
         
         return {
             "query": query,

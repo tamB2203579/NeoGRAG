@@ -5,6 +5,9 @@ You must analyze all the information and reason through the contexts to provide 
 
 You must use only the information provided below to construct your answer.
 
+CHAT HISTORY:
+{chat_history}
+
 INFORMATION FROM VECTOR STORE:
 {vector_context}
 
