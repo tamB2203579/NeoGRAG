@@ -75,13 +75,20 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
     <div className={`sidebar ${isOpen ? 'open' : 'collapsed'}`}>
       <div className="top">
         <div className="menu-container">
-          <img
-            className="menu"
-            style={{ opacity: 1, pointerEvents: 'auto' }}
-            src={isOpen ? assets.white_menu_icon : assets.menu_icon}
-            alt=""
-            onClick={onToggle}
-          />
+          <button
+            id="toggle-btn"
+            className="material-symbols-outlined menu"
+            onClick={onToggle} 
+            style={{
+              color: isOpen ? "#fff" : "#1f5ca9", 
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            menu
+          </button>
+
         </div>
 
         <img

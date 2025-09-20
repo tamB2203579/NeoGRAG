@@ -1,5 +1,4 @@
 import history_icon from './history_icon.png'
-import menu_icon from './menu_icon.png'
 import plus_icon from './plus_icon.png'
 import question_icon from './question_icon.png'
 import setting_icon from './setting_icon.png'
@@ -15,7 +14,6 @@ import send_icon from './send_icon.png'
 import gemini_icon from './gemini_icon.png'
 import logo_icon from './logo_icon.png'
 import white_message_icon from './white_message_icon.png'
-import white_menu_icon from './white_menu_icon.png'
 import home_icon from './home_icon.png'
 import white_home_icon from './white_home_icon.png'
 import ctu from './ctu.png'
@@ -25,7 +23,6 @@ import bot_avatar from "./bot_avatar.png"
 
 export const assets = {
     history_icon,
-    menu_icon,
     plus_icon,
     question_icon,
     setting_icon,
@@ -41,7 +38,6 @@ export const assets = {
     gemini_icon,
     logo_icon,
     white_message_icon,
-    white_menu_icon,
     home_icon,
     white_home_icon,
     ctu,

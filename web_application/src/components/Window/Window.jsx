@@ -185,9 +185,11 @@ const Window = ({ isOpen, onToggle }) => {
         updateChatHistory={updateChatHistory}
       />
       <div className={`main ${isOpen ? 'sidebar-open' : 'sidebar-collapsed'}`}>
-        <div className="nav">
-          <p style={{ fontFamily: 'K2D, sans-serif' }}>REBot</p>
+
+        <div className={isOpen ? 'nav with-sidebar' : 'nav without-sidebar'}>
+          <p>REBot</p>
         </div>
+
         <div className="main-container">
           <div className="chats-container">
             {messages.map((msg, index) => (

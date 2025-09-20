@@ -30,18 +30,44 @@
     margin-right: auto;
 }
 
-.nav {
+/* .nav {
+    position: fixed;
+    top: 0;
+    left: 250px; 
+    right: 0;
     display: flex;
+    align-items: center;
     align-items: center;
     justify-content: center;
     font-size: 40px;
     padding: 20px;
-    /* color: #585858; */
     color: #1f5ca9;
     border-bottom: 1px solid #1f5ca9;
     font-weight: bolder; 
     width: 80%;
+} */
+.without-sidebar {
+    position: fixed;
+    top: 0;
+    left: 10;      
+    width: 65%;  
 }
+
+.with-sidebar {
+    width: 80%;
+}
+
+ .nav {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    font-size: 40px;
+    padding: 20px 0;
+    color: #1f5ca9;
+    border-bottom: 1px solid #1f5ca9;
+    font-weight: bolder;
+}
+
 
 .prompt-container {
     position: fixed;
@@ -116,7 +142,7 @@ button,
     width: 40px;
     height: 40px;
     border: none; 
-    background-color: #e6eaf1;
+    background-color: #f0f4f9;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -149,16 +175,6 @@ button,
     text-align: center;
     font-weight: 300;
     font-family: 'K2D', sans-serif;
-}
-
-#delete-btn {
-  background-color: #e6eaf1;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-#delete-btn:hover {
-  background-color: rgba(255, 0, 0, 0.15); /* soft red tint on hover */
-  transform: scale(1.05); /* slight zoom for feedback */
 }
 
 /* chat styling */

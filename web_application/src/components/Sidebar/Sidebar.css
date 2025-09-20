@@ -13,6 +13,7 @@
     color: white;
     transition: width 0.5s ease;
     font-family: 'K2D', sans-serif;
+    z-index: 100;
 }
 
 .sidebar.open {
@@ -83,7 +84,6 @@
 
 .menu-container {
   position: relative;
-  z-index: 1;
 }
 
 button {
