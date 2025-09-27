@@ -129,7 +129,7 @@ const Window = ({ isOpen, onToggle }) => {
         });
       } catch (error) {
         console.error('Error creating thread:', error);
-       return;
+        return;
       }
     }
 
@@ -217,7 +217,7 @@ const Window = ({ isOpen, onToggle }) => {
             <div ref={messagesEndRef} />
           </div>
         </div>
-        <div className={`prompt-container ${hasSubmitted ? 'at-bottom' : 'centered'}`}>
+        <div className={`prompt-container ${hasSubmitted ? 'at-bottom' : 'centered'} ${isOpen ? 'sidebar-open' : 'sidebar-collapsed'}`}>
           <div className="prompt-wrapper">
             <div className="prompt-search">
               <input
