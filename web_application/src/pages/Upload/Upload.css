@@ -152,6 +152,8 @@
   font-size: 17px;
   font-weight: 500;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap
 }
 
 .btn-upload:disabled {
