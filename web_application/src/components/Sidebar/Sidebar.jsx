@@ -1,3 +1,4 @@
+// Sidebar.jsx
 import { useEffect, useState } from 'react';
 import { onSnapshot, doc, collection, getDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
@@ -11,16 +12,13 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
   useEffect(() => {
     WebFont.load({
       google: {
-        families: [
-          'K2D:400,500,700&display=swap',
-          'Readex Pro:400,500,700&display=swap',
-        ],
+        families: ['K2D:400,500,700&display=swap', 'Readex Pro:400,500,700&display=swap'],
       },
     });
 
     const threadsCollection = collection(db, 'threads');
     const q = query(threadsCollection, orderBy('timestamp', 'desc'));
-    
+
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const threadsList = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -36,28 +34,23 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
   }, []);
 
   const handleDeleteThread = async (threadId) => {
-    if (window.confirm('Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?')) {
-      try {
-        await deleteDoc(doc(db, 'threads', threadId));
+    if (!window.confirm('Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?')) return;
 
-        updateCurrentThread(null);
-        updateChatHistory([]);
-
-        setThreads((prev) => prev.filter((thread) => thread.id !== threadId));
-      } catch (error) {
-        console.error('Lỗi xóa thread:', error);
-      }
+    try {
+      await deleteDoc(doc(db, 'threads', threadId));
+      updateCurrentThread(null);
+      updateChatHistory([]);
+      setThreads((prev) => prev.filter((thread) => thread.id !== threadId));
+    } catch (error) {
+      console.error('Lỗi xóa thread:', error);
     }
   };
 
   const handleThreadClick = async (threadId) => {
     try {
-      console.log(`Chuyển sang thread ${threadId}`);
       updateCurrentThread(threadId);
-
       const threadRef = doc(db, 'threads', threadId);
       const threadSnap = await getDoc(threadRef);
-
       if (threadSnap.exists()) {
         const threadData = threadSnap.data();
         updateChatHistory(threadData.contents || []);
@@ -72,37 +65,39 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
   };
 
   return (
-    <div className={`sidebar ${isOpen ? 'open' : 'collapsed'}`}>
+    <aside className={`sidebar ${isOpen ? 'open' : 'collapsed'}`}>
       <div className="top">
         <div className="menu-container">
           <button
             id="toggle-btn"
             className="material-symbols-outlined menu"
-            onClick={onToggle} 
+            onClick={onToggle}
             style={{
-              color: isOpen ? "#fff" : "#1f5ca9", 
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
+              color: isOpen ? '#fff' : '#1f5ca9',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
             }}
           >
             menu
           </button>
-
         </div>
 
         <img
           className="home_logo"
           src={assets.logo_icon}
-          alt=""
+          alt="Home"
           onClick={() => window.location.replace('/landing.html')}
         />
 
-        <div className="new-chat" onClick={() => {
-          updateCurrentThread(null);
-          updateChatHistory([]);
-        }}>
-          <img src={assets.plus_icon} alt="" />
+        <div
+          className="new-chat"
+          onClick={() => {
+            updateCurrentThread(null);
+            updateChatHistory([]);
+          }}
+        >
+          <img src={assets.plus_icon} alt="New Chat" />
           <p>Cuộc trò chuyện mới</p>
         </div>
 
@@ -110,18 +105,14 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
           <p className="recent-title">Gần đây</p>
           <div className="recent-list">
             {threads.map((thread) => (
-              <div
-                className="recent-entry"
-                key={thread.id}
-                onClick={() => handleThreadClick(thread.id)}
-              >
-                <img src={assets.white_message_icon} alt="" />
+              <div className="recent-entry" key={thread.id} onClick={() => handleThreadClick(thread.id)}>
+                <img src={assets.white_message_icon} alt="Message" />
                 <p>{thread.title}</p>
                 <img
                   src={assets.delete_icon}
-                  alt='delete'
+                  alt="Delete"
                   onClick={(e) => {
-                    e.stopPropagation(); // prevent triggering parent click
+                    e.stopPropagation();
                     handleDeleteThread(thread.id);
                   }}
                 />
@@ -135,11 +126,11 @@ const Sidebar = ({ isOpen, onToggle, updateCurrentThread, updateChatHistory }) =
         <img
           className="home-btn"
           src={isOpen ? assets.white_home_icon : assets.home_icon}
-          alt=""
+          alt="Home"
           onClick={() => window.location.replace('/landing.html')}
         />
       </div>
-    </div>
+    </aside>
   );
 };
 
