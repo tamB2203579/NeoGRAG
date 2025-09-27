@@ -1,261 +1,393 @@
-__label__chitchat tức đường
-__label__Academic thể học tín
-__label__chitchat an toàn giao thông
-__label__Academic thể học tín
-__label__Academic tham gia thi bao nhiêu
-__label__chitchat uống cà phê trà
-__label__Academic hạn rút học khoa khí
-__label__Academic học phí tín khoa ngôn ngữ
-__label__chitchat ui detox mạng xã hội nè đi tui
-__label__chitchat liệu bảo hiểm y tế hong
-__label__chitchat ship đồ giúp phiền phức trời
-__label__Academic thi bổ sung lỡ kỳ thi
-__label__Academic giấy chứng hiến máu
-__label__Academic rớt môn thi
-__label__Academic đăng ký học môn thể danh sách môn
-__label__chitchat hơi phèn
-__label__Academic đồ ánkhóa luận khoa điện tử viễn thông
-__label__Academic hạn rút học khoa sinh học
-__label__chitchat
-__label__Academic tiên quyết học khoa công nghệ thông
-__label__Academic sinh viên thể tín nghiên cứu
-__label__Academic học phí chương trình chất chương trình đại trà
-__label__Academic lệ phí thi bao nhiêu
-__label__Academic thể thay tín luận văn
-__label__chitchat ê phết
-__label__chitchat công phết
-__label__Academic công lớp học khoa điện tử viễn thông
-__label__Academic học cải thiện khoa khí
-__label__Academic học cải thiện khoa quản trị kinh doanh
-__label__Academic quy định học chương trình đào
-__label__Academic học phí chương trình chất chương trình đại trà
-__label__Academic ngành
-__label__Academic trường quy định trang phục sinh viên
-__label__Academic thầycô quy định thang thang áp dụng học kỳ
-__label__chitchat ôi chao detox mạng xã hội nè remark
-__label__chitchat lol
-__label__chitchat chống tham nhũng đỉnh vcl
-__label__Academic thể khiếu nại giảng viên chấm
-__label__Academic khóa luận nghiệp đăng ký
-__label__Academic đồ ánkhóa luận khoa khoa học liệu
-__label__Academic thể đóng học phí ngân hàng
-__label__chitchat quan giá đất thử
-__label__Academic sinh viên quốc tế học phí
-__label__Academic học phí văn hai
-__label__Academic thủ tục bảo lưu kết học tập
-__label__Academic đăng ký tín phụ khoa khí
-__label__chitchat đi bún bò vãi chưởng
-__label__chitchat vẻ lương sở remark
-__label__Academic kiểm tra miệng bắt buộc
-__label__Academic nộp giấy tờ hoãn thi
-__label__Academic thời gian tối đa hoàn thành chương trình khoa công nghệ thông
-__label__Academic học phí tín khoa công nghệ thông
-__label__chitchat ê ship đồ giúp đi tui
-__label__Academic trường bắt đầu đăng ký tín
-__label__chitchat đi bún bò quê ghê
-__label__Academic thể đăng ký tín
-__label__Academic quy trình xét nghiệp
-__label__chitchat haha đỉnh vcl
-__label__chitchat quan minh bạch ngân sách
-__label__Academic thể trưởng khoa thời gian
-__label__Academic ngànhchuyên ngành khoa kinh tế
-__label__chitchat đỉnh
-__label__chitchat đi phượt
-__label__chitchat ship đồ giúp trễ
-__label__Academic tiếng đầu gpa
-__label__Academic vi phạm đầu đình học
-__label__Academic thể thi
-__label__Academic gpa tròn
-__label__Academic học phí lớp học kỹ năng mềm bao nhiêu
-__label__Academic thi d
-__label__Academic thể học lớp môn
-__label__Academic phụ phí học môn tiếng
-__label__chitchat mlem mlem kẹt xe hot hông
-__label__Academic kiện xét học bổng khoa kinh tế
-__label__chitchat ảo mai dậy nổi remark
-__label__Academic kiện cụ thể đăng ký khóa luận ngành khoa học liệu
-__label__Academic thể học song song hai ngành
-__label__chitchat ê bá cháy
-__label__Academic thể gửi email phòng đào thông
-__label__Academic kiện mốc thời gian xóa
-__label__Academic thi bù bệnh
-__label__Academic thời gian đào chương trình đại học bao
-__label__Academic trường khoa sinh học
-__label__Academic thầycô quy định tiên quyết học áp dụng học kỳ
-__label__Academic giá sách sách trường rẻ
-__label__Academic kỳ tổng kết
-__label__chitchat cà phê sữa bạc xỉu vãi hàng
-__label__chitchat xịn phết
-__label__Academic căng đồ chay
-__label__chitchat trời cà phê sữa bạc xỉu ổn
-__label__chitchat mệt ghê
-__label__Academic trường hỗ trợ sinh viên vay vốn ngân hàng đóng học phí
-__label__chitchat bao nhiêu
-__label__chitchat đi
-__label__Academic lịch thi tập trung khoa khí
-__label__chitchat cà phê sữa bạc xỉu mệt bá đạo
-__label__chitchat thú bá cháy
-__label__chitchat giá đất mệt mỏi ghê
-__label__Academic tốc độ mạng wifi
-__label__Academic bảng giấy tờ
-__label__chitchat ngôn luận đường
-__label__chitchat quy hoạch đô thị ổn
-__label__Academic chuẩn đầu ngành ngôn ngữ năng lực
-__label__Academic trường quy định sử dụng email sinh viên
-__label__chitchat hôm cà phê sữa bạc xỉu mệt vãi
-__label__Academic thủ tục ủy quyền nghiệp
-__label__Academic sinh viên tham gia tối đa bao nhiêu câu lạc
-__label__Academic tiền đóng học phí học
-__label__chitchat căng đét mệt mệt vui
-__label__chitchat
-__label__Academic học cải thiện khoa ngôn ngữ
-__label__chitchat kệ đi
-__label__chitchat ảo hông
-__label__Academic học cải thiện
-__label__Academic kiện cụ thể xét nghiệp ngành kinh tế
-__label__chitchat hôm mai dậy nổi mệt vãi
-__label__Academic đăng ký song ngành khoa kinh tế
-__label__Academic phòng đào trường
-__label__chitchat ảo vui phết
-__label__chitchat mệt mệt vui
-__label__chitchat hôm ngủ trễ mai toang chán vãi
-__label__Academic học kỳ tròn
-__label__Academic thể đăng ký môn song ngành tiêu chí
-__label__Academic sinh viên đóng phí giáo trình
-__label__Academic ngànhchuyên ngành khoa quản trị kinh doanh
-__label__chitchat thèm phở
-__label__chitchat trời mưa đi phiền phức trời
-__label__Academic sinh viên đóng học phí môn
-__label__chitchat nghề
-__label__chitchat vãi
-__label__chitchat cười xỉu đi đà lạt tuần hông remark
-__label__Academic thời gian học văn hai bao
-__label__chitchat công lú
-__label__chitchat deadline dí xỉu mệt bá đạo
-__label__Academic kiến sinh viên ghi giải quyết
-__label__Academic thời gian tối đa hoàn thành chương trình khoa điện tử viễn thông
-__label__Academic thực tập nghiệp khoa sinh học
-__label__Academic thời gian tối đa hoàn thành chương trình khoa ngôn ngữ
-__label__chitchat hóng trời
-__label__chitchat minh bạch ngân sách bình tĩnh
-__label__Academic học phí tín ngành công nghệ thông bao nhiêu
-__label__chitchat thương ghê
-__label__chitchat biến đổi khí hậu mệt mệt vui
-__label__Academic tiên quyết học khoa quản trị kinh doanh
-__label__Academic sách hỗ trợ sinh viên khăn khoa sinh học
-__label__chitchat căng đét wifi chập chờn đồng
-__label__Academic phòng trách nhiệm xác giấy tờ
-__label__Academic giới hạn sinh viên đăng ký môn
-__label__Academic học phí tín ngành sinh học bao nhiêu
-__label__chitchat vẻ giá đất
-__label__Academic quy định cảnh báo học vụ khoa luật
-__label__Academic giá photo bao nhiêu trang
-__label__chitchat căng đét bá cháy
-__label__Academic đổi lớp thực hành khoa nông nghiệp
-__label__Academic học bao chuyên
-__label__Academic học
-__label__chitchat ảo đi bún bò thử
-__label__chitchat đi đà lạt tuần hông vãi chưởng
-__label__chitchat báo chí quyền tư liệu
-__label__chitchat thể trò đùa
-__label__Academic lịch thi tập trung khoa sinh học
-__label__Academic đăng ký học lớp kỹ năng mềm
-__label__Academic bảo lưu kết môn học
-__label__Academic giảng viên bắt buộc công bố đáp án thi
-__label__Academic trường khoa kinh tế
-__label__Academic chuẩn hồ sơ xét nghiệp
-__label__Academic thực tập nghiệp khoa quản trị kinh doanh
-__label__chitchat quan đổi lo
-__label__chitchat giá đất ổn
-__label__chitchat coi phim tối ổn
-__label__Academic bảng tiếng khoa sinh học
-__label__Academic thời gian chờ thẻ sinh viên bao
-__label__Academic quy định cảnh báo học vụ khoa kinh tế
-__label__chitchat xạo
-__label__chitchat đi đà lạt tuần hông chán trời
-__label__Academic thể sử dụng máy trường
-__label__Academic thời gian học văn hai bao
-__label__Academic quy định cảnh báo học vụ khoa nông nghiệp
-__label__chitchat quốc hội tranh luận hông
-__label__chitchat hôm biếng kinh khủng tụt mood vãi
-__label__chitchat tạm biệt
-__label__Academic thời gian nộp khóa luận nghiệp
-__label__Academic phòng y tế trường
-__label__Academic kiện đăng ký học tín
-__label__Academic học phí chương trình liên kết quốc tế bao nhiêu
-__label__Academic thành lập câu lạc thủ tục
-__label__Academic phúc khảo thể
-__label__chitchat đi
-__label__chitchat ảo coi phim tối ổn
-__label__chitchat ê biếng kinh khủng ổn
-__label__chitchat chào
-__label__Academic thể thông tuyển sinh đại học
-__label__Academic trường wifi miễn phí sinh viên
-__label__chitchat thiệt khum
-__label__chitchat đói bụng
-__label__Academic sinh viên thi trùng lịch xử lý
-__label__chitchat quốc hội tranh luận bình tĩnh
-__label__chitchat xịn sò trời mưa đi lo
-__label__chitchat ngôn luận phết
-__label__Academic thủ tục giấy giới thiệu phức tạp
-__label__chitchat đi nhậu
-__label__Academic giấy báo dự thi
-__label__Academic rèn luyện chấm tiêu chí
-__label__Academic thư viện trường tài liệu hướng trích
-__label__chitchat hoa
-__label__chitchat chán ghê phết
-__label__chitchat quy hoạch đô thị
-__label__chitchat ngon
-__label__Academic gia hạn thời gian thi sinh viên khuyết tật
-__label__chitchat ui ship đồ giúp đồng
-__label__Academic hoạt động đoàn niên hội sinh viên trường
-__label__chitchat alo
-__label__chitchat drama nè
-__label__chitchat trời mưa đi chán trời
-__label__Academic xóa môn học
-__label__chitchat mệt xỉu
-__label__Academic bao nhiêu tín thể chất
-__label__Academic bảng tiếng khoa luật
-__label__Academic đăng ký tín phụ khoa ngôn ngữ
-__label__chitchat ừa
-__label__chitchat giá xăng hot hông
+__label__Academic bảo hiểm y tế sinh viên khoa điện tử viễn thông
+__label__chitchat nhiên thèm đồ nướng
+__label__chitchat chém gió xíu
+__label__chitchat sale nè mua quê ghê
 __label__Academic trường hỗ trợ sinh viên
-__label__chitchat căng đét ship đồ giúp đi tui
-__label__Academic lịch hiến máu
-__label__Academic chuẩn đầu khoa khí
-__label__Academic trường tổ chức hội thảo chuyên đề
-__label__chitchat tức trời mưa đi hong
-__label__Academic quy định bảo lưu kết khoa công nghệ thông
-__label__chitchat đỉnh chóp xịn sò
-__label__Academic trường liên kết công ty hỗ trợ sinh viên thực tập
-__label__Academic trường camera an ninh
-__label__Academic bao hoàn thành tín
-__label__Academic thời gian nợ bao
-__label__Academic trễ hạn đóng học phí
 __label__Academic kiện cụ thể đi thực tập ngành ngôn ngữ
-__label__Academic quy định cộng ưu tiên sinh viên sách
-__label__Academic bao hoàn tiền học phí học
-__label__Academic vi phạm quy chế thi hủy kết toàn kỳ
-__label__Academic trung bình học kỳ thang
+__label__chitchat hóng trời
+__label__Academic thể nộp học phí muộn
+__label__chitchat miễn nấu ngon
+__label__chitchat ảo hông
+__label__chitchat hồi đi học vui
+__label__Academic miễn học khoa khí
+__label__Academic hạn rút học khoa công nghệ thông
+__label__Academic công lớp học khoa sinh học
+__label__chitchat nhắn
+__label__chitchat hôm ngủ trễ mai toang nhức đầu vãi
+__label__Academic học phí tín ngành khí bao nhiêu
+__label__chitchat cổ vũ khản cổ
+__label__Academic quy định song hành chương trình đào
+__label__chitchat trời hông
+__label__Academic đồ ánkhóa luận khoa điện tử viễn thông
+__label__chitchat quyền tư liệu bình tĩnh
+__label__chitchat sale mua
+__label__chitchat biển núi
+__label__Academic kiện xét học bổng khoa ngôn ngữ
+__label__chitchat đừng hùa đám đông
+__label__chitchat trời cà phê sữa bạc xỉu ổn
+__label__chitchat chụp hình
+__label__Academic khóa luận nghiệp đăng ký
+__label__chitchat giúp
+__label__Academic đình thi ảnh hưởng kết nghiệp
+__label__chitchat đọc xong cảm
+__label__Academic hạn rút học khoa sinh học
+__label__Academic khung chương trình đào khoa khoa học liệu
+__label__Academic phụ phí học môn tiếng
+__label__chitchat trời
+__label__Academic máy lập trình phòng thi
+__label__Academic ngànhchuyên ngành khoa kinh tế
+__label__Academic trường khoa khí
+__label__Academic đóng lệ phí
+__label__chitchat gửi tài liệu
+__label__chitchat ui detox mạng xã hội nè đi tui
+__label__chitchat suy
+__label__chitchat đi đà lạt tuần hông vãi chưởng
+__label__chitchat ui ship đồ giúp đồng
+__label__Academic thể thi ghép lớp
+__label__Academic địa hiến máu
+__label__chitchat thức
+__label__Academic kỳ bắt buộc
+__label__chitchat đi bún bò quê ghê
+__label__Academic quy định thi trực tuyến
+__label__chitchat chào
+__label__chitchat
+__label__Academic báo cáo thực tập nội dung
+__label__Academic công bố danh sách coi thi
+__label__Academic kiện xét học bổng khoa quản trị kinh doanh
+__label__Academic thẻ sinh viên
+__label__chitchat nhạc
+__label__Academic ngành yêu cầu tiếng đầu ieltstoeic
+__label__chitchat mua hàng tâm lắm
+__label__Academic kiện xét học bổng khoa sinh học
+__label__Academic phúc khảo thể
+__label__Academic kiện cụ thể đi thực tập ngành công nghệ thông
+__label__Academic trường quy định đạo văn
+__label__chitchat drama
+__label__chitchat thú vị
+__label__chitchat đỉnh chóp xịn sò
+__label__Academic trường bãi xe sinh viên
+__label__chitchat minh bạch ngân sách thiệt trời mệt
+__label__chitchat tức mai dậy nổi lo
+__label__Academic thời gian tối đa hoàn thành chương trình khoa sinh học
+__label__Academic bảng tiếng khoa sinh học
+__label__Academic thi vắng mặt lý
+__label__Academic sách hỗ trợ sinh viên khăn khoa ngôn ngữ
+__label__Academic thủ tục miễn học giấy tờ
+__label__Academic cài mềm máy trường
+__label__Academic mặc quần short trường
+__label__chitchat đi chill
+__label__chitchat cà phê tỉnh ngủ hẳn
+__label__chitchat đổi căng nha
+__label__Academic kiện mốc thời gian xóa
+__label__Academic sinh viên quốc tế học phí
+__label__Academic nghiệp thức
+__label__chitchat cười xỉu
+__label__chitchat lắm
+__label__chitchat mấy
+__label__Academic hồ sơ xác rèn luyện học kỳ xét ngành
+__label__chitchat chuẩn chỉnh
+__label__Academic điện thoại tắt phòng thi
+__label__chitchat liệu sách giáo dục lo
+__label__Academic bảo hiểm y tế sinh viên khoa quản trị kinh doanh
+__label__Academic công bố lịch thi tập trung
+__label__chitchat trà thảo mộc ngon
+__label__Academic miễn học phí khoa nông nghiệp
+__label__Academic thông báo hạn đóng học phí
+__label__chitchat
+__label__Academic kiến cố vấn học tập ngành
+__label__chitchat đi bún bò vãi chưởng
+__label__chitchat
+__label__chitchat trời
+__label__chitchat đi thản
+__label__Academic trễ hạn đóng học phí
+__label__chitchat vẻ giá đất
+__label__chitchat ôi trời
+__label__chitchat quán ngon
+__label__Academic học phí giải nghiên cứu khoa học
+__label__Academic học hai văn
+__label__Academic học phí chương trình đào hai
+__label__Academic gpa thang
+__label__chitchat ván game
+__label__chitchat quan an toàn giao thông hợp lý
+__label__Academic thủ tục ủy quyền nghiệp
+__label__Academic thể liên hệ giảng viên cố vấn học tập email
+__label__Academic bảo lưu gpa
+__label__Academic rèn luyện ảnh hưởng học bổng
+__label__chitchat chỗ đặc sản ngon
+__label__Academic đóng thừa học phí hoàn
+__label__Academic hạn rút học khoa kinh tế
+__label__Academic kiện tiếng đầu chương trình liên kết quốc tế
+__label__chitchat ánh đẹp nè
+__label__chitchat lương sở xịn sò
+__label__chitchat cười xỉu bá cháy
+__label__Academic bao hoàn thành tín
+__label__Academic thể photo tài liệu trường
+__label__Academic chứng hoàn thành khóa học
+__label__Academic sách miễn sinh viên thương binh
+__label__Academic kiện cụ thể đăng ký khóa luận ngành quản trị kinh doanh
+__label__chitchat cơm
+__label__Academic sinh viên đóng học phí môn
+__label__chitchat cố gắng
+__label__Academic học phí tín ngành kinh tế bao nhiêu
+__label__chitchat hữu duyên thiên lý năng tương ngộ
+__label__Academic trường liên kết trường đại học
+__label__Academic thầycô quy định miễn học áp dụng học kỳ
+__label__chitchat sến đi
+__label__chitchat drama nè
+__label__Academic thể đổi tín bắt buộc
 __label__Academic lịch thi tập trung khoa kinh tế
-__label__chitchat ê ngủ trễ mai toang thử
-__label__Academic lệ phí y nghiệp bao nhiêu
-__label__Academic học bổng bao nhiêu tiền
-__label__chitchat ừm
-__label__chitchat quan bầu cử hong
-__label__Academic thể nâng tập
-__label__chitchat nè lú
-__label__Academic khăn học thể giúp đỡ
-__label__Academic công lớp học khoa luật
-__label__chitchat nổi
-__label__Academic địa email phòng đào
-__label__Academic sách miễn học phí
-__label__Academic đăng ký tín phụ khoa quản trị kinh doanh
-__label__Academic thầycô quy định đăng ký song ngành áp dụng học kỳ
-__label__Academic báo khoa học sinh viên công bố tạp chí trường
-__label__chitchat giá đất
-__label__Academic thi đấu trường cửa sinh viên tập luyện
+__label__chitchat
+__label__chitchat đi kem
+__label__Academic sinh viên ngành
+__label__chitchat ngon nghẻ
+__label__Academic phúc khảo thi
+__label__Academic đăng ký tham gia nghiên cứu khoa học bắt đầu
+__label__chitchat săn sale lắm
+__label__chitchat cười xỉu ship đồ giúp ổn
+__label__Academic tiên quyết học khoa luật
+__label__chitchat đi mua sắm giải stress
+__label__chitchat detox mạng xã hội nè vãi hàng
+__label__Academic tham gia thi bao nhiêu
 __label__chitchat đi dạo
-__label__chitchat vẻ môi trường rác thải nhựa lo
-__label__chitchat chào trưa
-__label__Academic hạn rút học khoa nông nghiệp
+__label__Academic nộp giấy tờ hoãn thi
+__label__Academic trường đội ngũ tư vấn tâm lý sinh viên
+__label__chitchat
+__label__Academic quy định học chương trình đào
+__label__Academic trường khoa luật
+__label__chitchat chết
+__label__Academic hỗ trợ sinh viên ngành định hướng học tập
+__label__Academic miễn học khoa công nghệ thông
+__label__chitchat thua
+__label__Academic học phí sinh viên sâu
+__label__chitchat chúc an lành
+__label__chitchat trời mai dậy nổi hong
+__label__Academic điện thoại văn phòng khoa
+__label__Academic phòng đào
+__label__Academic thể mượn sách thư viện bao
+__label__chitchat đi
+__label__Academic kiện mốc thời gian tạm dừng học
+__label__chitchat dạo
+__label__chitchat cún
+__label__Academic miễn học phí khoa kinh tế
+__label__chitchat hôm
+__label__Academic thời gian chờ thẻ trường
+__label__Academic ngành mã sinh viên thay đổi
+__label__chitchat dạo ta bàn minh bạch ngân sách hong
+__label__chitchat haha đỉnh vcl
+__label__chitchat biếng kinh khủng chán trời
+__label__chitchat quan minh bạch ngân sách
+__label__Academic học cải thiện khoa quản trị kinh doanh
+__label__Academic trung bình tích lũy gpa khoa khoa học liệu
+__label__chitchat xịn sò cà phê sữa bạc xỉu
+__label__Academic học chậm tín cảnh cáo
+__label__chitchat thèm
+__label__chitchat deadline dí xỉu mệt xỉu
+__label__chitchat lát tiếp
+__label__Academic bảng tiếng khoa công nghệ thông
+__label__chitchat xịn sò trời mưa đi lo
+__label__Academic trường bắt đầu đăng ký tín
+__label__Academic quy định tiên quyết chương trình đào
+__label__chitchat dặn
+__label__Academic khăn học thể giúp đỡ
+__label__chitchat haha
+__label__chitchat bao nhiêu
+__label__Academic ngành ảnh hưởng học giáo dục quốc phòng thể chất
+__label__Academic kỳ bắt buộc
+__label__Academic giấy chứng nghiệp tạm thời
+__label__Academic tham gia nghiên cứu khoa học cộng thưởng
+__label__Academic chuẩn đầu khoa công nghệ thông
+__label__Academic công lớp học khoa quản trị kinh doanh
+__label__chitchat hôm mặc bây
+__label__Academic chi phí chương trình trao đổi bao nhiêu
+__label__chitchat giới thiệu
+__label__chitchat sale nè mua vãi hàng
+__label__Academic học phí tín khoa ngôn ngữ
+__label__Academic kiện xét học bổng khoa khí
+__label__chitchat uống cà phê trà
+__label__Academic lịch thi tập trung khoa nông nghiệp
+__label__Academic đóng thừa học phí hoàn
+__label__Academic thể sử dụng máy trường
+__label__Academic đăng ký học lớp kỹ năng mềm
+__label__Academic học phí ngành công nghệ thông bao nhiêu
+__label__Academic ngành định hướng nghề nghiệp trường tư vấn
+__label__chitchat tập thể dục
+__label__Academic thể giấy tờ tùy thân thay thẻ sinh viên
+__label__chitchat kế hoạch
+__label__Academic ngành yêu cầu chuẩn đầu ngoại ngữ xử lý
+__label__Academic thời gian học văn hai bao
+__label__chitchat đi nhậu
+__label__chitchat
+__label__chitchat đi vui
+__label__Academic ngành tín bảo lưu
+__label__Academic phát hiện đề thi sai xử lý
+__label__Academic công lớp học khoa khoa học liệu
+__label__chitchat hát karaoke
+__label__chitchat mlem mlem kẹt xe hot hông
+__label__Academic giảng viên hướng nghiên cứu khoa học
+__label__chitchat mát mát ghê
+__label__chitchat cà phê sữa bạc xỉu vãi hàng
+__label__Academic phòng trách nhiệm xác giấy tờ
+__label__chitchat thể câu
+__label__Academic sinh viên khuyết tật miễn học phí
+__label__chitchat căng đét căng nha
+__label__chitchat zzz
+__label__Academic thời gian tối đa hoàn thành chương trình khoa luật
+__label__chitchat
+__label__chitchat hehe ngủ trễ mai toang đi tui
+__label__chitchat đổi mệt mỏi ghê
+__label__Academic học phí sinh viên mồ côi
+__label__Academic thể giúp mật khẩu email
+__label__Academic thể thi nâng
+__label__Academic công ty tham gia hội
+__label__chitchat thèm phở
+__label__Academic thời hạn nộp hồ sơ ngành
+__label__chitchat giá đất
+__label__Academic thời gian chờ giấy giới thiệu bao
+__label__Academic ngành tham gia câu lạc bộhọc bổng doanh nghiệp
+__label__Academic bảo hiểm y tế sinh viên khoa luật
+__label__Academic thầycô quy định học cải thiện áp dụng học kỳ
+__label__Academic thang thang khoa điện tử viễn thông
+__label__chitchat kẹt xe mệt bá đạo
+__label__Academic thang thang khoa khí
+__label__chitchat chuẩn đi ngủ
+__label__Academic quy định cảnh báo học vụ khoa nông nghiệp
+__label__Academic kiện cụ thể đăng ký khóa luận ngành nông nghiệp
+__label__chitchat hơi phèn
+__label__chitchat quần phối áo hợp
+__label__Academic ngành tiêu giới hạn tiêu chí xét
+__label__chitchat học nấu
+__label__chitchat tạnh mưa kìa
+__label__chitchat hát lắm
+__label__chitchat game
+__label__Academic thời gian tối đa hoàn thành chương trình khoa điện tử viễn thông
+__label__Academic duyệt ngành ngành cũ
+__label__chitchat nấu
+__label__chitchat alo
+__label__chitchat liệu thị trường lao động hong
+__label__chitchat đi tuần
+__label__Academic trường tổ chức hội thảo chuyên đề
+__label__Academic gpa bao nhiêu xét ngành
+__label__Academic ngành học đầu kỳ
+__label__Academic đăng ký tín phụ khoa khí
+__label__chitchat tám
+__label__chitchat lắm
+__label__chitchat đọc truyện tranh
+__label__chitchat luộc trứng
+__label__chitchat quan giá đất thử
+__label__Academic giới hạn ngành
+__label__Academic lịch thi tập trung khoa quản trị kinh doanh
+__label__chitchat xong
+__label__chitchat giá xăng ngộ ghê
+__label__Academic ngành cam kết học tập kế hoạch học bù
+__label__Academic duyệt ngành hồ sơ hoàn
+__label__chitchat
+__label__chitchat bó
+__label__Academic thời gian đào chương trình đại học bao
+__label__chitchat mlem mlem
+__label__Academic học cải thiện khoa luật
+__label__Academic lệ phí thi bao nhiêu
+__label__Academic học phí văn hai
+__label__chitchat rải cv
+__label__Academic tham gia hoạt động đoàn hội cộng rèn luyện
+__label__Academic lịch thi tổ chức
+__label__Academic tiêu chí ưu tiên hồ sơ ngành tiêu
+__label__Academic trường nghiệp
+__label__chitchat công phết
+__label__chitchat cảm ơn
+__label__chitchat khét lẹt
+__label__chitchat quy hoạch đô thị ổn
+__label__chitchat triển
+__label__Academic lệ phí thủ tục ngành bao nhiêu
+__label__Academic đăng ký tín phụ khoa ngôn ngữ
+__label__Academic bao hoàn tiền học phí học
+__label__Academic đồ án môn học bình
+__label__Academic thầycô quy định bảo hiểm y tế sinh viên áp dụng học kỳ
+__label__Academic trường bắt đầu đăng ký tín
+__label__Academic bảy chủ nhật phòng đào
+__label__chitchat thể giúp
+__label__Academic ký túc xá trường phòng trống
+__label__Academic hạn rút học khoa khí
+__label__chitchat hợp lý
+__label__chitchat đi du lịch
+__label__Academic công lớp học khoa luật
+__label__Academic tài liệu phòng thi
+__label__chitchat thể trò đùa
+__label__chitchat
+__label__Academic kiện cụ thể đăng ký khóa luận ngành khí
+__label__Academic đồ ánkhóa luận khoa nông nghiệp
+__label__chitchat
+__label__Academic quyết định chấp thuận ngành
+__label__Academic vi phạm quy chế thi hủy kết toàn kỳ
+__label__Academic rút môn học phí hoàn
+__label__chitchat thèm vặt
+__label__chitchat haha đùa
+__label__Academic sử dụng tài liệu phòng thi
+__label__chitchat cười xỉu đi đà lạt tuần hông remark
+__label__Academic thời gian chờ xét đăng ký học
+__label__Academic hạn rút học khoa điện tử viễn thông
+__label__Academic kiện ngành
+__label__Academic thời gian tối đa hoàn thành chương trình khoa ngôn ngữ
+__label__chitchat chuẩn chỉnh
+__label__Academic học tối thiểu bao nhiêu tín kỳ
+__label__chitchat trời mệt mỏi ghê
+__label__Academic đăng ký học khoa khí
+__label__chitchat chán ghê detox mạng xã hội nè đồng
+__label__chitchat kẹt xe xỉu
+__label__chitchat câu quen ghê
+__label__Academic đồ trường báo
+__label__chitchat trời bối rối sợ
+__label__Academic thầycô quy định đăng ký học áp dụng học kỳ
+__label__chitchat căng đét wifi chập chờn đồng
+__label__chitchat thành phố nông thôn
+__label__chitchat chúc tối vui vẻ
+__label__chitchat nội dung nhảm nhí
+__label__chitchat đường trơn đi cẩn thận
+__label__Academic thể chương trình chất chương trình đại trà
+__label__chitchat đỉnh chóp máy lag vãi ổn
+__label__chitchat lắm
+__label__Academic khóa luận nghiệp đăng ký
+__label__chitchat ê chấm
+__label__chitchat dậy nổi
+__label__Academic thể đăng ký môn học chương trình
+__label__chitchat kệ đi
+__label__Academic giá sách sách trường rẻ
+__label__Academic kỳ hè thể đăng ký bao nhiêu tín
+__label__chitchat quyền tư liệu hot hông
+__label__chitchat quan minh bạch ngân sách thử
+__label__Academic thể thực tập
+__label__Academic thể bảng tiếng
+__label__Academic thủ tục giấy giới thiệu phức tạp
+__label__chitchat ship đồ giúp phiền phức trời
+__label__chitchat chuẩn
+__label__Academic phòng thi
+__label__Academic bảng tiếng khoa kinh tế
+__label__chitchat lướt giải trí
+__label__chitchat
+__label__chitchat hoa
+__label__chitchat boom hàng
+__label__chitchat xạo
+__label__chitchat
+__label__Academic trường khoa khoa học liệu
+__label__Academic thời hạn đóng học phí
+__label__Academic học trực tuyến tín
+__label__chitchat thèm trà sữa
+__label__chitchat cà phê sữa bạc xỉu mệt bá đạo
+__label__Academic thang thang khoa khí
+__label__Academic thể thông tuyển sinh đại học
+__label__Academic thực tập nghiệp khoa quản trị kinh doanh
+__label__chitchat đi sách
+__label__Academic học tín ngoại ngữ
+__label__chitchat
+__label__chitchat nè
+__label__Academic thể sử dụng máy trường
+__label__chitchat thèm trà sữa
+__label__chitchat đỉnh
+__label__chitchat đi du lịch
+__label__Academic xác sinh viên vay vốn quy trình
+__label__chitchat học hành
+__label__chitchat vẻ quyền tư liệu remark
+__label__Academic kiện cụ thể đăng ký khóa luận ngành khoa học liệu
+__label__chitchat kỳ nghỉ lập tức
+__label__chitchat kỷ niệm đẹp
+__label__Academic học phí tín ngành ngôn ngữ bao nhiêu
+__label__chitchat thuật toán ghê
